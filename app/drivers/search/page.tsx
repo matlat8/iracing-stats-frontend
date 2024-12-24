@@ -15,6 +15,7 @@ import {
     TableRow,
   } from "~/components/ui/table"
 import Link from "next/link";
+import { Skeleton } from "~/components/ui/skeleton";
 
 
 export default function DriverSearch() {
@@ -29,12 +30,19 @@ export default function DriverSearch() {
 
 
     return (
-        <Container>
-            <Input placeholder="Search for a driver" onChange={(ctx) => (setSearchDriver(ctx.target.value))}/>
-            <p>{searchDriver}</p>
-            {isLoading && <p>Loading...</p>}
-            {isError && <p>Error</p>}
-            {data && <SearchResultsTable data={data} />}
+        <Container className="p-4">
+            <Input 
+                placeholder="Search for a driver" 
+                onChange={(ctx) => (setSearchDriver(ctx.target.value))}
+                className="bg-white w-full"
+                />
+
+            <div className="border border-gray-300 rounded-md mt-4">
+                {isLoading && <Skeleton className="w-[675px] h-[200px] rounded-md" />}
+                {isError && <p>Error</p>}
+                {data && <SearchResultsTable data={data} />}
+            </div>
+
 
         </Container>
     )
@@ -47,18 +55,18 @@ function SearchResultsTable(data: iRacingStatAPI.$_RequestSchema["/drivers/searc
             <Table>
                 <TableCaption>Search Results</TableCaption>
                 <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-[300px]">Driver</TableHead>
-                        <TableHead>Location</TableHead>
-                        <TableHead>Road iR</TableHead>
-                        <TableHead>Oval iR</TableHead>
-                        <TableHead>Dirt Oval iR</TableHead>
+                    <TableRow className="bg-gray-300">
+                        <TableHead className="w-[300px] border-gray-200">Driver</TableHead>
+                        <TableHead className="w-[150px]">Location</TableHead>
+                        <TableHead className="w-[75px]">Road iR</TableHead>
+                        <TableHead className="w-[75px]">Oval iR</TableHead>
+                        <TableHead className="w-[75px]">Dirt Oval iR</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {data.data.map((driver) => (
-                        <TableRow key={driver.cust_id}>
-                            <Link href={`/drivers/career?cust_id=${driver.cust_id}`}><TableCell>{driver.display_name}</TableCell></Link>
+                        <TableRow key={driver.cust_id} className="bg-white">
+                            <Link href={`/drivers/career?cust_id=${driver.cust_id}`}><TableCell className="border-r w-[300px]">{driver.display_name}</TableCell></Link>
                             <TableCell>{driver.club_name} {driver.country_code}</TableCell>
                             <TableCell>{driver.road_rating}</TableCell>
                             <TableCell>{driver.oval_rating}</TableCell>

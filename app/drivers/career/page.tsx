@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 import { useRouter, useSearchParams } from "next/navigation";
+import { Container } from '~/components/Container';
 
 function CareerPageContent() {
     const searchParams = useSearchParams();
@@ -16,9 +17,9 @@ function CareerPageContent() {
     }
 
     return (
-        <div>
+        <Container>
             <h1>Career Page {cust_id}</h1>
-        </div>
+        </Container>
     );
 }
 

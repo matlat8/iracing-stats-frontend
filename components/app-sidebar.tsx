@@ -26,7 +26,7 @@ const items = [
   
   export function AppSidebar() {
     return (
-      <Sidebar variant="floating">
+      <Sidebar >
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>iRacing Stat</SidebarGroupLabel>
