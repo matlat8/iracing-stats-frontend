@@ -1,4 +1,4 @@
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar"
+import { SidebarProvider } from "~/components/ui/sidebar"
 import { ThemeProvider } from "next-themes";
 import { AppSidebar } from "~/components/app-sidebar"
 import "./globals.css";
