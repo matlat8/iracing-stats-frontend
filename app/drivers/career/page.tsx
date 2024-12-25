@@ -53,7 +53,7 @@ function UserInfo({ cust_id }: UserInfoProps) {
     return (
         <div className='w-full flex flex-col gap-2'>
 
-            <div className='bg-white rounded-md p-4 border border-gray-200'>
+            <div className='bg-white rounded-md p-4 border border-gray-200 shadow-sm'>
                 {isLoading && <Skeleton className='w-full h-full'/>}
                 {isError && <p>Error</p>}
                 {data && 
@@ -72,7 +72,7 @@ function UserInfo({ cust_id }: UserInfoProps) {
             )}
 
             {data && (
-            <div className='bg-white rounded-md p-4 flex border border-gray-200 justify-between'>
+            <div className='bg-white rounded-md p-4 flex border border-gray-200 justify-between shadow-sm'>
                 <div>
                     <p>Road</p>
                     <p>{data.information.road_rating || 1350}</p>
