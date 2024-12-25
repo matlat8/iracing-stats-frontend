@@ -69,6 +69,27 @@ declare namespace iRacingStatAPI {
                 sports_car_rating: number;
                 formula_car_rating: number;
             }
+        },
+        "/drivers/{custId}/win-rate": {
+            all_time: {
+                categories: {
+                    license_category?: string;
+                    total_events?: number;
+                    wins?: number;
+                    win_rate?: number;
+                    top_3?: number;
+                    top_5?: number;
+                    avg_finishing_position?: number;
+                }[];
+                all: {
+                    total_events?: number;
+                    wins?: number;
+                    win_rate?: number;
+                    top_3?: number;
+                    top_5?: number;
+                    avg_finishing_position?: number;
+                }
+            },
         }
     }
 

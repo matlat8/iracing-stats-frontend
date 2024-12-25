@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <SidebarProvider>
           <AppSidebar />
             <main
-              className="h-screen overflow-hidden bg-gray-100 text-black w-full"
+              className=" bg-gray-100 text-black w-full"
               style={montserrat.style}>
               {children}
             </main>
