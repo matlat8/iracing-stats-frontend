@@ -13,6 +13,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <QueryProvider>
       <Analytics />
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <title>iRacing Stat</title>
+        </head>
         <body>
         <ThemeProvider attribute="class" disableTransitionOnChange>
         <SidebarProvider>
