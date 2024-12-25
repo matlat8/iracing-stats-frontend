@@ -1,4 +1,4 @@
-import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar"
 import { ThemeProvider } from "next-themes";
 import { AppSidebar } from "~/components/app-sidebar"
 import "./globals.css";
@@ -15,8 +15,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider attribute="class" disableTransitionOnChange>
         <SidebarProvider>
           <AppSidebar />
-            <main className={montserrat.className}>
-              <SidebarTrigger />
+            <main
+              className="h-screen overflow-hidden bg-gray-100 text-black w-full"
+              style={montserrat.style}>
               {children}
             </main>
           </SidebarProvider>
