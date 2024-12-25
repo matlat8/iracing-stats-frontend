@@ -4,12 +4,14 @@ import { AppSidebar } from "~/components/app-sidebar"
 import "./globals.css";
 import { QueryProvider } from "./QueryProvider";
 import { Montserrat } from 'next/font/google'
+import { Analytics } from "@vercel/analytics/react"
 
 const montserrat = Montserrat({ subsets: ['latin']})
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <QueryProvider>
+      <Analytics />
       <html lang="en" suppressHydrationWarning>
         <body>
         <ThemeProvider attribute="class" disableTransitionOnChange>
