@@ -11,7 +11,7 @@ interface UserStatsProps {
 
 export default function DriverStats({ cust_id }: UserStatsProps) {
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ["/drivers/{custId}/win-rate", cust_id],
         enabled: cust_id > 0,
         queryFn: () => iRacingStatAPI.fetch(`/drivers/${cust_id}/win-rate` as "/drivers/{custId}/win-rate")
@@ -23,7 +23,7 @@ export default function DriverStats({ cust_id }: UserStatsProps) {
         <div className="w-full">
             {isLoading && <Skeleton className="w-full h-full border border-gray-200" />}
             {data && (
-                <div className="bg-white rounded-md border border-gray-200 p-4">
+                <div className="bg-white rounded-md border border-gray-200 p-4 shadow-sm">
                     <p className="text-center font-light">All Categories</p>
                     <div className="flex">
                         <div className="flex items-center w-1/2">
