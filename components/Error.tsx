@@ -5,7 +5,7 @@ interface ErrorProps {
     className: string;
 }
 
-export default function Error({ message, className }: ErrorProps) {
+export default function Error({ message }: ErrorProps) {
     return (
         <div className="border border-red-500 bg-slate-50 w-full h-full flex rounded-md shadow-md shadow-red-300">
             <div className="p-16 flex items-center gap-4">
