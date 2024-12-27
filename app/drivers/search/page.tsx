@@ -34,7 +34,7 @@ export default function DriverSearch() {
             <Input 
                 placeholder="Search for a driver" 
                 onChange={(ctx) => (setSearchDriver(ctx.target.value))}
-                className="bg-white w-full"
+                className="bg-white w-full dark:bg-gray-800"
                 />
 
             <div className="border border-gray-300 rounded-md mt-4">
@@ -64,8 +64,8 @@ function SearchResultsTable(data: iRacingStatAPI.$_RequestSchema["/drivers/searc
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {data.data.map((driver) => (
-                        <TableRow key={driver.cust_id} className="bg-white">
+                    {data.data.map((driver, index) => (
+                        <TableRow key={index} className="bg-white dark:bg-black">
                             <Link href={`/drivers/career?cust_id=${driver.cust_id}`}><TableCell className="border-r w-[300px]">{driver.display_name}</TableCell></Link>
                             <TableCell>{driver.club_name} {driver.country_code}</TableCell>
                             <TableCell>{driver.road_rating}</TableCell>

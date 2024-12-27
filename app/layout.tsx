@@ -1,4 +1,4 @@
-import { SidebarProvider } from "~/components/ui/sidebar"
+import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar"
 import { ThemeProvider } from "next-themes";
 import { AppSidebar } from "~/components/app-sidebar"
 import "./globals.css";
@@ -21,8 +21,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <SidebarProvider>
           <AppSidebar />
             <main
-              className=" bg-gray-100 text-black w-full"
+              className=" bg-gray-100 dark:bg-black text-black dark:text-white w-full"
               style={montserrat.style}>
+                <SidebarTrigger />
               {children}
             </main>
           </SidebarProvider>

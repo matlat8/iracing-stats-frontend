@@ -90,6 +90,49 @@ declare namespace iRacingStatAPI {
                     avg_finishing_position: number;
                 }
             },
+        },
+        "/drivers/{custId}/events": {
+            data: {
+                cust_id: number;
+                display_name: string;
+                subsession_id: number;
+                start_time: string;
+                end_time: string;
+                num_drivers: number;
+                event_laps_complete: number;
+                winner_group_id: number;
+                winner_name: string;
+                license_category: string;
+                track: string[];
+                season_id: number;
+                season_year: number;
+                season_quarter: number;
+                event_type: number;
+                event_type_name: string;
+                event_strength_of_field: number;
+                event_average_lap: number;
+                event_best_lap_time: number;
+                simsession_number: number;
+                simsession_name: string;
+                simsession_type: number;
+                simsession_type_name: string;
+                finish_position_in_class: number;
+                starting_position_in_class: number;
+                oldi_rating: number;
+                newi_rating: number;
+            }[];
+        },
+        "/drivers/{custId}/irating": {
+            data: {
+                cust_id: number;
+                newi_rating: number;
+                oval_ir: number;
+                road_ir: number;
+                dirtoval_ir: number;
+                dirtroad_ir: number;
+                sportscar_ir: number;
+                formulacar_ir: number;
+            }[];
         }
     }
 

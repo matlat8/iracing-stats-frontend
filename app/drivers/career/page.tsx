@@ -2,13 +2,14 @@
 
 import { Suspense } from 'react';
 import { useRouter, useSearchParams } from "next/navigation";
-import { Container } from '~/components/Container';
-import DriverStats from './(section)/DriverStats';
-import UserInfo from './(section)/UserInfo';
+import OverallStats from './(section)/OverallStats';
+import IRatingChart from './(section)/iRatingChart';
+import RecentEvents from './(section)/RecentEvents';
+import Achievements from './(section)/Achievements';
 
 function CareerPageContent() {
     const searchParams = useSearchParams();
-    const custId = searchParams.get('cust_id');
+    const custId = Number(searchParams.get('cust_id'));
     const router = useRouter();
 
 
@@ -20,10 +21,18 @@ function CareerPageContent() {
     }
 
     return (
-        <Container className='mt-16 grid grid-cols-2 w-full gap-2'>
-            <UserInfo cust_id={ Number(custId) } />
-            <DriverStats cust_id={Number(custId)} />
-        </Container>
+        <div className="container mx-auto p-4">
+            <div className="grid gap-6 lg:grid-cols-2">
+                <OverallStats cust_id={custId}/>
+                <IRatingChart custId={custId}/>
+            </div>
+            <div className="mt-6">
+                <RecentEvents custId={custId}/>
+            </div>
+            <div className="mt-6">
+                <Achievements />
+            </div>
+      </div>
     );
 }
 
