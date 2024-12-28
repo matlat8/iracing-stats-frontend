@@ -31,7 +31,7 @@ export default function Home() {
 function QuickDriverCard({ title, custId }: { title: string, custId: number }) {
   return (
     <Link href={`/drivers/career?cust_id=${custId}`}>
-      <div className='bg-white border border-gray-200 h-16 rounded-sm m-4 p-4'>
+      <div className='bg-white dark:bg-black border border-gray-200 h-16 rounded-sm m-4 p-4'>
         {title}
       </div>
     </Link>
