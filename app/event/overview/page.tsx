@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { SessionOverview } from "./(section)/SessionOverview";
 import { Suspense } from "react";
+import SessionResults from "./(section)/SessionResults";
 
 
 function EventOverviewContent() {
@@ -11,9 +12,12 @@ function EventOverviewContent() {
     const eventId = Number(searchParams.get('eventId'));
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
             <div className="max-w-6xl">
                 <SessionOverview session_id={eventId} />
+            </div>
+            <div>
+                <SessionResults sessionId={eventId} />
             </div>
         </div>
     )

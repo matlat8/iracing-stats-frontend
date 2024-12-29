@@ -170,6 +170,19 @@ declare namespace iRacingStatAPI {
                 event_average_lap: number;
                 event_best_lap_time: number;
             }
+        },
+        "/sessions/{sessionId}/results": {
+            data: {
+                cust_id: number;
+                display_name: string;
+                car_name: string;
+                starting_position: number;
+                finish_position: number;
+                incidents: number;
+                interval: number;
+                oldi_rating: number;
+                newi_rating: number;
+            }[];
         }
     }
 

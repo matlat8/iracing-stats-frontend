@@ -17,6 +17,7 @@ import {
 import { iRacingStatAPI } from "~/src/iRacingStatAPI"
 
 export default function RecentEvents({ custId }: { custId: number }) {
+
     const { data, isFetching, isError } = useQuery({
         queryKey: ["/drivers/{custId}/events?limit=10", custId],
         queryFn: () => iRacingStatAPI.fetch(`/drivers/${custId}/events?limit=10` as "/drivers/{custId}/events")
@@ -67,7 +68,6 @@ export default function RecentEvents({ custId }: { custId: number }) {
           </TableBody>
         </Table>
         )}
-
       </CardContent>
     </Card>
   )
