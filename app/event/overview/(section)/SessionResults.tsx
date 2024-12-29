@@ -14,7 +14,7 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
             .then(response => response && response.success && response.data ),
     })
     return (
-        <Card>
+        <Card className="min-w-full">
             <CardHeader>
                 <CardTitle>Results</CardTitle>
             </CardHeader>
@@ -54,8 +54,11 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
                                         <TableCell>{result.car_name}</TableCell>
                                         <TableCell>{result.incidents}</TableCell>
                                         <TableCell>{formattedInterval}</TableCell>
-                                        <TableCell className={(result.newi_rating - result.oldi_rating ) > 0 ? "text-green-600" : "text-red-600"}>
-                                            {(result.newi_rating - result.oldi_rating ) > 0 ? "+" : ""}{(result.newi_rating - result.oldi_rating )}
+                                        <TableCell className="flex items-stretch">
+                                            <p>{result.oldi_rating}</p>
+                                            <p className={(result.newi_rating - result.oldi_rating ) > 0 ? "text-green-600 text-[12px]" : "text-red-600 text-[12px]"}>
+                                                {(result.newi_rating - result.oldi_rating ) > 0 ? "+" : ""}{(result.newi_rating - result.oldi_rating )}
+                                            </p>
                                         </TableCell>
                                     </TableRow>
                             )})}

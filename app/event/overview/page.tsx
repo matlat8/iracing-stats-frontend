@@ -12,11 +12,11 @@ function EventOverviewContent() {
     const eventId = Number(searchParams.get('eventId'));
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="mx-4">
             <div className="max-w-6xl">
                 <SessionOverview session_id={eventId} />
             </div>
-            <div>
+            <div className="pt-2 max-w-6xl">
                 <SessionResults sessionId={eventId} />
             </div>
         </div>
