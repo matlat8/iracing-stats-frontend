@@ -2,9 +2,10 @@
 
 import { useSearchParams } from "next/navigation";
 import { SessionOverview } from "./(section)/SessionOverview";
+import { Suspense } from "react";
 
 
-export default function EventOverview() {
+function EventOverviewContent() {
 
     const searchParams = useSearchParams();
     const eventId = Number(searchParams.get('eventId'));
@@ -16,4 +17,12 @@ export default function EventOverview() {
             </div>
         </div>
     )
+}
+
+export default function EventOverview() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <EventOverviewContent />
+        </Suspense>
+    );
 }
