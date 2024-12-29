@@ -56,9 +56,9 @@ export default function RecentEvents({ custId }: { custId: number }) {
                   {(event.newi_rating - event.oldi_rating ) > 0 ? "+" : ""}{(event.newi_rating - event.oldi_rating )}
                 </TableCell>
                 <TableCell>
-                    <Button variant={"link"} size={"sm"}>
+                    <Button variant={"ghost"} size={"sm"}>
                         <Link href={`/event/overview?eventId=${event.subsession_id}`}>
-                            View
+                            <p className="m-2">View</p>
                         </Link>
                     </Button>
                 </TableCell>

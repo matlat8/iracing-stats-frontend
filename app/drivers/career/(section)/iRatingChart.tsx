@@ -18,17 +18,33 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent
 } from "~/components/ui/chart"
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  oval_ir: {
+    label: "Oval iR",
     color: "hsl(var(--chart-1))",
   },
-  mobile: {
-    label: "Mobile",
+  road_ir: {
+    label: "Road iR",
     color: "hsl(var(--chart-2))",
   },
+  sportscar_ir: {
+      label: "Sports Car",
+      color: "hsl(var(--chart-3))",
+  },
+  formulacar_ir: {
+      label: "Formula Car",
+      color: "hsl(var(--chart-4))",
+  },
+  dirtroad_ir: {
+      label: "Dirt Road iR",
+      color: "hsl(var(--chart-5))",
+  },
+  
+
 } satisfies ChartConfig
 
 export default function IRatingChart({ custId }: { custId: number }) {
@@ -66,48 +82,50 @@ export default function IRatingChart({ custId }: { custId: number }) {
                 <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
                 <Line
                   dataKey="formulacar_ir"
+                  name="Formula Car"
                   type="monotone"
                   stroke="hsl(var(--chart-1))"
                   strokeWidth={2}
-                  dot={true}
+                  dot={false}
                   connectNulls={true}
                 />
                 <Line
                   dataKey="sportscar_ir"
-                  label="Sports Car"
+                  name="Sports Car"
                   type="monotone"
                   stroke="hsl(var(--chart-2))"
                   strokeWidth={2}
-                  dot={true}
+                  dot={false}
                   connectNulls={true}
                 />
                 <Line
                   dataKey="oval_ir"
-                  label="Oval iR"
+                  name="Oval iR"
                   type="monotone"
                   stroke="hsl(var(--chart-3))"
                   strokeWidth={2}
-                  dot={true}
+                  dot={false}
                   connectNulls={true}
                 />
                 <Line
                   dataKey="road_ir"
-                  label="Road iR"
+                  name="Road iR"
                   type="monotone"
                   stroke="hsl(var(--chart-4))"
                   strokeWidth={2}
-                  dot={true}
+                  dot={false}
                   connectNulls={true}
                 />
                 <Line
                   dataKey="dirtroad_ir"
-                  label="Dirt Road iR"
+                  name="Dirt Road iR"
                   type="monotone"
                   stroke="hsl(var(--chart-5))"
                   strokeWidth={2}
-                  dot={true}
+                  dot={false}
                   connectNulls={true}
                 />
+                <ChartLegend content={<ChartLegendContent />} />
               </LineChart>
             </ChartContainer>
           </CardContent>
