@@ -1,6 +1,7 @@
 
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Card, CardContent } from '~/components/ui/card'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -19,12 +20,24 @@ const quickDrivers = [{
 
 export default function Home() {
   return (
-    <div className='flex items-center mt-12 w-full'>
-      {quickDrivers.map((driver, index) => (
-        <QuickDriverCard key={index} title={driver.title} custId={driver.custId} />
-      ))}
-
+    <div>
+      <div className='flex'>
+      <Card>
+        <CardContent className='p-4'>
+          <div className='text-center'>
+            <h1 className='text-3xl font-bold'>Welcome to iRacing Stat</h1>
+            <p>Welcome to iRacing Stat – your ultimate hub for iRacing analytics. Dive into detailed session insights, track performance metrics, and uncover actionable data about drivers and races. Elevate your competitive edge with data-driven decisions</p>
+          </div>
+          </CardContent>
+      </Card>
+      </div>
+      <div className='flex items-center mt-12 w-full'>
+        {quickDrivers.map((driver, index) => (
+          <QuickDriverCard key={index} title={driver.title} custId={driver.custId} />
+        ))}
+      </div>
     </div>
+
   );
 }
 
@@ -36,5 +49,4 @@ function QuickDriverCard({ title, custId }: { title: string, custId: number }) {
       </div>
     </Link>
   )
-
 }
