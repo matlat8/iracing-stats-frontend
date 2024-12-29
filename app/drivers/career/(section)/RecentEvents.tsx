@@ -31,7 +31,40 @@ export default function RecentEvents({ custId }: { custId: number }) {
       </CardHeader>
       <CardContent>
         {isError && <Error message="Error fetching recent events" className="w-full h-full"/>}
-        {isFetching && (<Skeleton className="w-full h-full" />)}
+        {isFetching && (
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Track</TableHead>
+                        <TableHead>Category</TableHead>
+                        <TableHead>Position</TableHead>
+                        <TableHead>iRating Change</TableHead>
+                        <TableHead></TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>
+                            <Skeleton className="w-24 h-8"/>
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="w-64 h-8"/>
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="w-16 h-8"/>
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="w-16 h-8"/>
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="w-16 h-8"/>
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+            
+        )}
         
         {data && data.length === 0 && <p>No recent events</p>}
         {data && data.length > 0 && (

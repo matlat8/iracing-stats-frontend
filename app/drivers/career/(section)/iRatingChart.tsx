@@ -19,6 +19,7 @@ import {
   ChartLegend,
   ChartLegendContent
 } from "~/components/ui/chart"
+import { Skeleton } from "~/components/ui/skeleton"
 
 const chartConfig = {
   oval_ir: {
@@ -46,7 +47,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export default function IRatingChart({ custId }: { custId: number }) {
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["/drivers/{custId}/irating", custId],
     queryFn: () => iRacingStatAPI.fetch(`/drivers/${custId}/irating` as "/drivers/{custId}/irating")
         .then(response => response && response.success && response.data )
@@ -54,6 +55,11 @@ export default function IRatingChart({ custId }: { custId: number }) {
 
   return (
     <div>
+        {isFetching && (
+            <div className="w-full h-64">
+                <Skeleton className="w-full h-64"/>
+            </div>
+        )}
         {data && (
         <Card>
           <CardHeader>

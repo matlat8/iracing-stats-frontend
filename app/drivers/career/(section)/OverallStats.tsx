@@ -22,7 +22,11 @@ export default function OverallStats({ cust_id }: { cust_id: number }) {
 
   return (
     <div className="max-h-max">
-        {isFetching && <Skeleton className="w-full h-full" />}
+        {isFetching && (
+            <div className="w-full h-32">
+                <Skeleton className="w-full h-full" />
+            </div>
+            )}
         {stats && (
         <Card>
           <CardHeader>
