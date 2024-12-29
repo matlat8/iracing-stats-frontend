@@ -3,13 +3,11 @@
 import { useQuery } from "@tanstack/react-query"
 import { iRacingStatAPI } from "~/src/iRacingStatAPI"
 
-import { TrendingUp } from "lucide-react"
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
 
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "~/components/ui/card"
