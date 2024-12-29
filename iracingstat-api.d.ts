@@ -19,6 +19,7 @@ declare namespace iRacingStatAPI {
     
     }
 
+    // DRIVER API
     interface $_RequestSchema {
         "/drivers/search": {
             data: {
@@ -133,6 +134,42 @@ declare namespace iRacingStatAPI {
                 sportscar_ir: number;
                 formulacar_ir: number;
             }[];
+        }
+    }
+
+    // SESSION API
+    interface $_RequestSchema {
+        "/sessions/{sessionId}": {
+            data: {
+                session_id: number;
+                subsession_id: number;
+                start_time: string;
+                end_time: string;
+                license_category: string;
+                num_drivers: number;
+                num_cautions: number;
+                num_caution_laps: number;
+                num_lead_changes: number;
+                event_laps_complete: number;
+                driver_changes: boolean;
+                winner_group_id: number;
+                winner_name: string;
+                track_config: string;
+                track_name: string;
+                official_session: boolean;
+                season_id: number;
+                season_year: number;
+                season_quarter: number;
+                event_type: number;
+                event_type_name: string;
+                series_id: number;
+                series_name: string;
+                series_short_name: string;
+                race_week_num: number;
+                event_strength_of_field: number;
+                event_average_lap: number;
+                event_best_lap_time: number;
+            }
         }
     }
 

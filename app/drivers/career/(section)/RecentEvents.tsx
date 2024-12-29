@@ -1,7 +1,9 @@
 'use client'
 
 import { useQuery } from "@tanstack/react-query"
+import Link from "next/link"
 import Error from "~/components/Error"
+import { Button } from "~/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
 import { Skeleton } from "~/components/ui/skeleton"
 import {
@@ -40,6 +42,7 @@ export default function RecentEvents({ custId }: { custId: number }) {
               <TableHead>Category</TableHead>
               <TableHead>Position</TableHead>
               <TableHead>iRating Change</TableHead>
+              <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -51,6 +54,13 @@ export default function RecentEvents({ custId }: { custId: number }) {
                 <TableCell>{event.finish_position_in_class}</TableCell>
                 <TableCell className={(event.newi_rating - event.oldi_rating ) > 0 ? "text-green-600" : "text-red-600"}>
                   {(event.newi_rating - event.oldi_rating ) > 0 ? "+" : ""}{(event.newi_rating - event.oldi_rating )}
+                </TableCell>
+                <TableCell>
+                    <Button variant={"link"} size={"sm"}>
+                        <Link href={`/event/overview?eventId=${event.subsession_id}`}>
+                            View
+                        </Link>
+                    </Button>
                 </TableCell>
               </TableRow>
             ))}
