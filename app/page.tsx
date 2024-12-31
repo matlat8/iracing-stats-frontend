@@ -16,26 +16,31 @@ export const metadata: Metadata = {
 const quickDrivers = [{
   title: 'Jimmy Broadbent',
   custId: 95469,
-  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/22fcda0e-b0b5-4e11-94bb-fd0337839cc0-profile_image-70x70.png'
+  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/22fcda0e-b0b5-4e11-94bb-fd0337839cc0-profile_image-70x70.png',
+  twitch: 'https://www.twitch.tv/jimmy_broadbent'
 },
 {
   title: 'Matt Malone',
   custId: 120570,
-  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/175dc11f-8f5a-4f4e-8beb-e0e4689ed5d1-profile_image-70x70.png'
+  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/175dc11f-8f5a-4f4e-8beb-e0e4689ed5d1-profile_image-70x70.png',
+  twitch: 'https://www.twitch.tv/mattmalone'
 }, {
   title: 'Oliver Furnell',
   custId: 510501,
-  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/d7679423-050b-4f83-ba9a-8de0b864edc8-profile_image-70x70.png'
+  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/d7679423-050b-4f83-ba9a-8de0b864edc8-profile_image-70x70.png',
+  twitch: 'https://www.twitch.tv/basicollie'
 },
 {
   title: 'Daniel Gray10',
   custId: 169861,
-  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/d185e49d-0a2d-4bb6-9fbc-a67c87a93796-profile_image-70x70.png'
+  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/d185e49d-0a2d-4bb6-9fbc-a67c87a93796-profile_image-70x70.png',
+  twitch: 'https://www.twitch.tv/danielgray10'
 },
 {
   title: 'Dave Cameron',
   custId: 259565,
-  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/6c81d4d6-1cf9-4c0f-ba4f-397bb7d4bdb5-profile_image-70x70.png'
+  image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/6c81d4d6-1cf9-4c0f-ba4f-397bb7d4bdb5-profile_image-70x70.png',
+  twitch: 'https://www.twitch.tv/davecam'
 }]
 
 export default function Home() {
@@ -57,7 +62,7 @@ export default function Home() {
           <p>Looking around? Explore some top iRacing streamers.</p>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4'>
             {quickDrivers.map((driver, index) => (
-              <QuickDriverCard key={index} title={driver.title} custId={driver.custId} image={driver.image} />
+              <QuickDriverCard key={index} title={driver.title} custId={driver.custId} image={driver.image} twitch={driver.twitch}/>
             ))}
           </div>
 
@@ -72,7 +77,7 @@ export default function Home() {
   );
 }
 
-function QuickDriverCard({ title, custId, image }: { title: string, custId: number, image: string }) {
+function QuickDriverCard({ title, custId, image, twitch }: { title: string, custId: number, image: string, twitch: string }) {
   return (
     <Link href={`/drivers/career?cust_id=${custId}`}>
       <Card className='transition-transform transform hover:scale-105 hover:shadow-lg'>
@@ -80,7 +85,9 @@ function QuickDriverCard({ title, custId, image }: { title: string, custId: numb
           <Image src={image} width={70} height={70} alt={title}/>
           <div>
             <h2 className='text-lg font-bold'>{title}</h2>
-            <FaTwitch />
+            <Link href={twitch}>
+              <FaTwitch className='transition-transform transform hover:scale-125 hover:shadow-lg text-purple-500'/>
+            </Link>
           </div>
         </CardContent>
       </Card>

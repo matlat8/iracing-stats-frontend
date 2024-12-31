@@ -176,12 +176,22 @@ declare namespace iRacingStatAPI {
                 cust_id: number;
                 display_name: string;
                 car_name: string;
+                car_class_short_name: string;
                 starting_position: number;
+                starting_position_in_class: number;
                 finish_position: number;
+                finish_position_in_class: number;
                 incidents: number;
                 interval: number;
+                class_interval: number;
                 oldi_rating: number;
                 newi_rating: number;
+                ir_change: number;
+                old_cpi: number;
+                new_cpi: number;
+                cpi_change: number;
+                laps_complete: number;
+                laps_lead: number;
             }[];
         }
     }
