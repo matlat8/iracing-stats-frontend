@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table"
 import { iRacingStatAPI } from "~/src/iRacingStatAPI"
 import { FaCarCrash } from "react-icons/fa";
-import { TooltipContent, TooltipProvider, TooltipTrigger, Tooltip } from "~/components/ui/tooltip"
+import { TooltipContent, TooltipTrigger, Tooltip } from "~/components/ui/tooltip"
 
 export default function SessionResults({ sessionId }: { sessionId: number }) {
     const { data, isFetching, isError } = useQuery({

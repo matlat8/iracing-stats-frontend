@@ -4,7 +4,6 @@ import { useSearchParams } from "next/navigation";
 import { SessionOverview } from "./(section)/SessionOverview";
 import { Suspense } from "react";
 import SessionResults from "./(section)/SessionResults";
-import { TooltipProvider } from "~/components/ui/tooltip";
 
 
 function EventOverviewContent() {
