@@ -11,16 +11,24 @@ export const metadata: Metadata = {
 }
 
 const quickDrivers = [{
+  title: 'Jimmy Broadbent',
+  custId: 95469,
+},
+{
   title: 'Matt Malone',
   custId: 120570,
 }, {
   title: 'Oliver Furnell',
   custId: 510501
+},
+{
+  'title': 'Daniel Gray10',
+  'custId': 169861
 }]
 
 export default function Home() {
   return (
-    <div>
+    <div className='lg:max-w-5xl flex flex-col items-center mx-auto px-2'>
       <div className='flex'>
       <Card>
         <CardContent className='p-4'>
@@ -31,10 +39,21 @@ export default function Home() {
           </CardContent>
       </Card>
       </div>
-      <div className='flex items-center mt-12 w-full'>
-        {quickDrivers.map((driver, index) => (
-          <QuickDriverCard key={index} title={driver.title} custId={driver.custId} />
-        ))}
+      <div className='flex items-center mt-12 w-full gap-4'>
+        <div>
+          <h2 className='text-2xl font-bold'>Popular Streamers</h2>
+          <p>Looking around? Explore some of my most favorite iRacing streamers.</p>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4'>
+            {quickDrivers.map((driver, index) => (
+              <QuickDriverCard key={index} title={driver.title} custId={driver.custId} />
+            ))}
+          </div>
+
+        </div>
+        <div>
+
+        </div>
+
       </div>
     </div>
 
@@ -44,9 +63,11 @@ export default function Home() {
 function QuickDriverCard({ title, custId }: { title: string, custId: number }) {
   return (
     <Link href={`/drivers/career?cust_id=${custId}`}>
-      <div className='bg-white dark:bg-black border border-gray-200 h-16 rounded-sm m-4 p-4'>
-        {title}
-      </div>
+      <Card className='transition-transform transform hover:scale-105 hover:shadow-lg'>
+        <CardContent className='p-4'>
+          <h2 className='text-lg font-bold'>{title}</h2>
+        </CardContent>
+      </Card>
     </Link>
   )
 }

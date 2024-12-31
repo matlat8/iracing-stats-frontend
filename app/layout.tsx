@@ -18,12 +18,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </head>
         <body>
         <ThemeProvider attribute="class" disableTransitionOnChange>
-        <SidebarProvider>
-          <AppSidebar />
+          <SidebarProvider>
+            <AppSidebar />
             <main
-              className=" bg-gray-100 dark:bg-black text-black dark:text-white w-full"
-              style={montserrat.style}>
-                <SidebarTrigger />
+            className=" bg-gray-100 dark:bg-black text-black dark:text-white w-full"
+            style={montserrat.style}>
+              <SidebarTrigger />
               {children}
             </main>
           </SidebarProvider>

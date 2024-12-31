@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "~/components/Container";
 import { Input } from "~/components/ui/input";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
@@ -20,10 +20,21 @@ import { Skeleton } from "~/components/ui/skeleton";
 
 export default function DriverSearch() {
     const [searchDriver, setSearchDriver] = useState<string>("");
+    const [debouncedSearchDriver, setDebouncedSearchDriver] = useState<string>("");
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+          setDebouncedSearchDriver(searchDriver);
+        }, 1000);
+    
+        return () => {
+          clearTimeout(handler);
+        };
+      }, [searchDriver]);
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ["/drivers/search", searchDriver],
-        enabled: searchDriver.length > 0,
+        enabled: debouncedSearchDriver.length > 0,
         queryFn: () => iRacingStatAPI.fetch(`/drivers/search?search_term=${searchDriver}` as "/drivers/search")
         .then(response => response && response.success && response.data),
     })

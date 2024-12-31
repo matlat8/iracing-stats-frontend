@@ -3,13 +3,16 @@ import { Home, Search } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "~/components/ui/sidebar"
+import { ThemeToggle } from "./ThemeToggle"
 
 const items = [
   {
@@ -27,9 +30,9 @@ const items = [
   export function AppSidebar() {
     return (
       <Sidebar variant="floating">
+      <SidebarHeader>iRacing Stat</SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>iRacing Stat</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -46,6 +49,9 @@ const items = [
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <ThemeToggle />
+      </SidebarFooter>
     </Sidebar>
     )
   }
