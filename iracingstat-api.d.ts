@@ -67,6 +67,20 @@ declare namespace iRacingStatAPI {
                 formula_car_rating: number;
             }
         },
+        "/drivers/{custId}/stats": {
+            seasons_rollup: {
+                season_year?: number;
+                season_quarter?: number;
+                total_events: number;
+                total_races: number;
+                total_wins: number;
+                podiums: number;
+                top_5: number;
+                irating_events_avg_laps_completed: number;
+                avg_finish_position_in_class: number;
+                avg_start_position_in_class: number;
+            }[];
+        }
         "/drivers/{custId}/win-rate": {
             all_time: {
                 categories: {
