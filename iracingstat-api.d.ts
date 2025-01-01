@@ -27,26 +27,22 @@ declare namespace iRacingStatAPI {
                 display_name: string;
                 club_name: string;
                 country_code: string;
-                oval_rating: number;
-                road_rating: number;
-                dirt_oval_rating: number;
-                dirt_road_rating: number;
-                sports_car_rating: number;
-                formula_car_rating: number;
             }[];
         },
         "/drivers/{custId}": {
             information: {
-                cust_id?: number;
-                display_name?: string;
-                club_name?: string;
-                country_code?: string;
-                oval_rating?: number;
-                road_rating?: number;
-                dirt_oval_rating?: number;
-                dirt_road_rating?: number;
-                sports_car_rating?: number;
-                formula_car_rating?: number;
+                cust_id: number;
+                display_name: string;
+                club_name: string;
+                country_code: string;
+                total_events: number;
+                total_races: number;
+                total_wins: number;
+                podiums: number;
+                top_5: number;
+                irating_events_avg_laps_completed: number;
+                avg_finish_position_in_class: number;
+                avg_start_position_in_class: number;
             },
             wins: {
                 total_wins: number;

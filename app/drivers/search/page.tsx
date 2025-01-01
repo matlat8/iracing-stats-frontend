@@ -69,19 +69,13 @@ function SearchResultsTable(data: iRacingStatAPI.$_RequestSchema["/drivers/searc
                     <TableRow className="bg-gray-300">
                         <TableHead className="w-[300px] border-gray-200">Driver</TableHead>
                         <TableHead className="w-[150px]">Location</TableHead>
-                        <TableHead className="w-[75px]">Road iR</TableHead>
-                        <TableHead className="w-[75px]">Oval iR</TableHead>
-                        <TableHead className="w-[75px]">Dirt Oval iR</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {data.data.map((driver, index) => (
                         <TableRow key={index} className="bg-white dark:bg-black">
-                            <Link href={`/drivers/career?cust_id=${driver.cust_id}`}><TableCell className="border-r w-[300px]">{driver.display_name}</TableCell></Link>
+                            <Link href={`/drivers/${driver.cust_id}/career`}><TableCell className="border-r w-[300px]">{driver.display_name}</TableCell></Link>
                             <TableCell>{driver.club_name} {driver.country_code}</TableCell>
-                            <TableCell>{driver.road_rating}</TableCell>
-                            <TableCell>{driver.oval_rating}</TableCell>
-                            <TableCell>{driver.dirt_oval_rating}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

@@ -14,10 +14,10 @@ export default function OverallStats({ cust_id }: { cust_id: number }) {
     })
 
     const stats = (data && ([
-        { title: "Total Races", value: 12, icon: Flag },
+        { title: "Total Races", value: data.information.total_races, icon: Flag },
         { title: "Wins", value: data.wins.total_wins, icon: Trophy },
-        { title: "Top 5 Finishes", value: 1, icon: Star },
-        { title: "iRating", value: 2345, icon: TrendingUp },
+        { title: "Top 5 Finishes", value: data.information.top_5, icon: Star },
+        { title: "Podiums", value: data.information.podiums, icon: TrendingUp },
       ]))
 
   return (
@@ -27,10 +27,10 @@ export default function OverallStats({ cust_id }: { cust_id: number }) {
                 <Skeleton className="w-full h-full" />
             </div>
             )}
-        {stats && (
+        {data && (
         <Card>
           <CardHeader>
-            <CardTitle>Overall Stats</CardTitle>
+            <CardTitle>{data.information.display_name} - Overall Stats</CardTitle>
           </CardHeader>
           <CardContent>
 
