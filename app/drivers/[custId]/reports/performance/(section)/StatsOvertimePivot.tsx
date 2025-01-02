@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from "@tanstack/react-query"
-import { Card, CardContent } from "~/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table"
 import { iRacingStatAPI } from "~/src/iRacingStatAPI"
 import React from "react"
@@ -21,12 +21,15 @@ export default function StatsOvertimePivot({ custId }: { custId: number}) {
             {isError && <p>Error</p>}
             {data && (
                 <Card>
+                    <CardHeader>
+                        <CardTitle>Career Stats</CardTitle>
+                        <CardDescription>Stats over the course of their racing career</CardDescription>
+                    </CardHeader>
                     <CardContent>
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Year</TableHead>
-                                    <TableHead>Month</TableHead>
+                                    <TableHead>Season</TableHead>
                                     <TableHead>Events</TableHead>
                                     <TableHead>Races</TableHead>
                                     <TableHead>Wins</TableHead>
@@ -40,8 +43,7 @@ export default function StatsOvertimePivot({ custId }: { custId: number}) {
                             <TableBody>
                                 {data.seasons_rollup.map((row, index) => (
                                     <TableRow key={index} className="my-2">
-                                        <TableCell>{row.season_year}</TableCell>
-                                        <TableCell>{row.season_quarter}</TableCell>
+                                        <TableCell>{row.season_year} {row.season_quarter ? `S${row.season_quarter}`: 'Total'}</TableCell>
                                         <TableCell>{row.total_events}</TableCell>
                                         <TableCell>{row.total_races}</TableCell>
                                         <TableCell>{row.total_wins}</TableCell>
