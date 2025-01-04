@@ -208,7 +208,7 @@ declare namespace iRacingStatAPI {
 
     // IRATING API
     interface $_RequestSchema {
-        "/iracing/filters": {
+        "/irating/filters": {
             distribution: {
                 years: number[];
                 quarters: number[];

@@ -1,6 +1,6 @@
 'use client';
 
-import { SelectTrigger } from "@radix-ui/react-select";
+import { SelectContent, SelectItem, SelectTrigger } from "~/components/ui/select";
 import { useQuery } from "@tanstack/react-query";
 import { Activity } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
@@ -26,7 +26,7 @@ export default function IRatingDistributionChart() {
     })
 
     const { data: filterData, isFetching: isFilterFetching, isError: isFilterError } = useQuery({
-        queryKey: ["irating", "distribution", "filters"],
+        queryKey: ["irating", "filters"],
         queryFn: () => iRacingStatAPI.fetch("/irating/filters")
             .then(response => response && response.success && response)
     })
@@ -39,11 +39,30 @@ export default function IRatingDistributionChart() {
                     <CardHeader>
                         <div className="flex">
                             <CardTitle>iRating Distribution</CardTitle>
-                            <div>
+                            <div className="flex ml-auto gap-2">
                                 <Select>
-                                    <SelectTrigger className="w-[180px]">
-                                        <SelectValue placeholder="Theme" />
+                                    <SelectTrigger className="w-[180px] border rounded-md">
+                                        <SelectValue placeholder="Year" />
                                     </SelectTrigger>
+                                    <SelectContent>
+                                        {isFilterFetching && <p>Loading...</p>}
+                                        {isFilterError && <p>Error fetching filters</p>}
+                                        {filterData && filterData.success && filterData.distribution.years.map(year => (
+                                            <SelectItem key={year} value={String(year)}>{year}</SelectItem>
+                                        )) }
+                                    </SelectContent>
+                                </Select>
+                                <Select>
+                                    <SelectTrigger className="w-[180px] border rounded-md">
+                                        <SelectValue placeholder="Season" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {isFilterFetching && <p>Loading...</p>}
+                                        {isFilterError && <p>Error fetching filters</p>}
+                                        {filterData && filterData.success && filterData.distribution.quarters.map(quarters => (
+                                            <SelectItem key={quarters} value={String(quarters)}>{quarters}</SelectItem>
+                                        )) }
+                                    </SelectContent>
                                 </Select>
                             </div>
                         </div>

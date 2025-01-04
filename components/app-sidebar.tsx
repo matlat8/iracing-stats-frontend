@@ -15,8 +15,6 @@ import {
 import { ThemeToggle } from "./ThemeToggle"
 import Image from 'next/image'
 
-
-
 import LogoLight from "~/public/logo-horizontal-light.png"
 import LogoDark from "~/public/logo-horizontal-dark.png"
 import { useTheme } from "next-themes"
