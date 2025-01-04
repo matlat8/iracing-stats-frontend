@@ -23,7 +23,7 @@ export default function CareerPage() {
             <div className="grid gap-6 lg:grid-cols-2">
                 <div className='flex flex-col gap-4'>
                     <OverallStats cust_id={ Number(custId) }/>
-                    
+                
                 </div>
                 <IRatingChart custId={ Number(custId) }/>
             </div>

@@ -133,7 +133,7 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
                                             )}
                                         </TableCell>
                                         <TableCell>
-                                            <Link href={`/drivers/career?cust_id=${result.cust_id}`}>
+                                            <Link href={`/drivers/${result.cust_id}/career`}>
                                                 <p className="hover:underline">{result.display_name}</p>
                                             </Link>
                                         </TableCell>

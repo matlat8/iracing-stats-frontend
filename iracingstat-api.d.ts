@@ -206,4 +206,22 @@ declare namespace iRacingStatAPI {
         }
     }
 
+    // IRATING API
+    interface $_RequestSchema {
+        "/iracing/filters": {
+            distribution: {
+                years: number[];
+                quarters: number[];
+            }
+        }
+
+        "/irating/distribution": {
+            distribution: {
+                irating_group: number;
+                count_in_group: number;
+                percentile: number;
+            }[];
+        };
+    }
+
 }
