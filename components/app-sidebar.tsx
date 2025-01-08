@@ -18,6 +18,7 @@ import Image from 'next/image'
 import LogoLight from "~/public/logo-horizontal-light.png"
 import LogoDark from "~/public/logo-horizontal-dark.png"
 import { useTheme } from "next-themes"
+import { usePathname } from "next/navigation"
 
 const items = [
   {
@@ -34,6 +35,7 @@ const items = [
   
   export function AppSidebar() {
     const { resolvedTheme } = useTheme();
+    const pathName = usePathname();
 
     return (
       <Sidebar variant="floating">
@@ -51,7 +53,7 @@ const items = [
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild isActive={pathName === item.url}>
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -66,7 +68,7 @@ const items = [
                 </SidebarGroupLabel>
                 <SidebarGroupContent>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton asChild isActive={pathName === '/irating'}>
                       
                       <a href="/irating">
                         <LineChart />

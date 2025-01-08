@@ -1,5 +1,6 @@
 'use client'
 
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 import Error from "~/components/Error"
@@ -24,12 +25,14 @@ export default function RecentEvents({ custId }: { custId: number }) {
         .then(response => response && response.success && response.data ),
     })
 
+    const [ animate ] = useAutoAnimate()
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Recent Events</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent ref={ animate }>
         {isError && <Error message="Error fetching recent events" className="w-full h-full"/>}
         {isFetching && (
             <Table>

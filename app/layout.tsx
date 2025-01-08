@@ -6,6 +6,7 @@ import { QueryProvider } from "./QueryProvider";
 import { Montserrat } from 'next/font/google'
 import { Analytics } from "@vercel/analytics/react"
 import { TooltipProvider } from "~/components/ui/tooltip";
+import { Suspense } from "react";
 
 const montserrat = Montserrat({ subsets: ['latin']})
  
@@ -20,15 +21,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <body>
         <ThemeProvider attribute="class" disableTransitionOnChange>
           <TooltipProvider>
-            <SidebarProvider>
-              <AppSidebar />
-              <main
-              className=" bg-gray-100 dark:bg-black text-black dark:text-white w-full"
-              style={montserrat.style}>
-                <SidebarTrigger />
-                {children}
-              </main>
-            </SidebarProvider>
+            <Suspense>
+              <SidebarProvider>
+                <AppSidebar />
+                <main
+                className=" bg-gray-100 dark:bg-black text-black dark:text-white w-full"
+                style={montserrat.style}>
+                  <SidebarTrigger />
+                  {children}
+                </main>
+              </SidebarProvider>
+            </Suspense>
           </TooltipProvider>
         </ThemeProvider>
         </body>

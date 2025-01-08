@@ -82,7 +82,7 @@ function QuickDriverCard({ title, custId, image, twitch }: { title: string, cust
     <Link href={`/drivers/${custId}/career`}>
       <Card className='transition-transform transform hover:scale-105 hover:shadow-lg'>
         <CardContent className='p-4 flex gap-2'>
-          <Image src={image} width={70} height={70} alt={title}/>
+          <Image src={image} width={70} height={70} alt={title} className='rounded-full'/>
           <div>
             <h2 className='text-lg font-bold'>{title}</h2>
             <Link href={twitch}>

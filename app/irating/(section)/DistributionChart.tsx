@@ -1,13 +1,12 @@
 'use client';
 
-import { SelectContent, SelectItem, SelectTrigger } from "~/components/ui/select";
 import { useQuery } from "@tanstack/react-query";
 import { Activity } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "~/components/ui/chart";
-import { Select, SelectValue } from "~/components/ui/select";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
+import { useQueryParam } from "~/src/hooks";
 
 const chartConfig = {
     count_in_group: {
@@ -18,18 +17,14 @@ const chartConfig = {
   } satisfies ChartConfig;
 
 export default function IRatingDistributionChart() {
-
+    const [ year, ] = useQueryParam<string>("year", "");
+    
     const { data, isFetching, isError } = useQuery({
-        queryKey: ["irating", "distribution"],
-        queryFn: () => iRacingStatAPI.fetch("/irating/distribution")
+        queryKey: ["irating", "distribution", year],
+        queryFn: () => iRacingStatAPI.fetch(`/irating/distribution?year=${year}` as "/irating/distribution")
             .then(response => response && response.success && response)
     })
 
-    const { data: filterData, isFetching: isFilterFetching, isError: isFilterError } = useQuery({
-        queryKey: ["irating", "filters"],
-        queryFn: () => iRacingStatAPI.fetch("/irating/filters")
-            .then(response => response && response.success && response)
-    })
     return (
         <div>
             {isFetching && <p>Loading...</p>}
@@ -40,35 +35,12 @@ export default function IRatingDistributionChart() {
                         <div className="flex">
                             <CardTitle>iRating Distribution</CardTitle>
                             <div className="flex ml-auto gap-2">
-                                <Select>
-                                    <SelectTrigger className="w-[180px] border rounded-md">
-                                        <SelectValue placeholder="Year" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {isFilterFetching && <p>Loading...</p>}
-                                        {isFilterError && <p>Error fetching filters</p>}
-                                        {filterData && filterData.success && filterData.distribution.years.map(year => (
-                                            <SelectItem key={year} value={String(year)}>{year}</SelectItem>
-                                        )) }
-                                    </SelectContent>
-                                </Select>
-                                <Select>
-                                    <SelectTrigger className="w-[180px] border rounded-md">
-                                        <SelectValue placeholder="Season" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {isFilterFetching && <p>Loading...</p>}
-                                        {isFilterError && <p>Error fetching filters</p>}
-                                        {filterData && filterData.success && filterData.distribution.quarters.map(quarters => (
-                                            <SelectItem key={quarters} value={String(quarters)}>{quarters}</SelectItem>
-                                        )) }
-                                    </SelectContent>
-                                </Select>
+
                             </div>
                         </div>
                     </CardHeader>
                     <CardContent>
-                        <ChartContainer config={chartConfig}>
+                        <ChartContainer config={chartConfig} className="max-h-96 w-full">
                             <AreaChart 
                                 accessibilityLayer
                                 data={data.distribution}

@@ -20,6 +20,7 @@ import {
   ChartLegendContent
 } from "~/components/ui/chart"
 import { Skeleton } from "~/components/ui/skeleton"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 const chartConfig = {
   oval_ir: {
@@ -53,19 +54,21 @@ export default function IRatingChart({ custId }: { custId: number }) {
         .then(response => response && response.success && response.data )
   })
 
+  const [ animate ] = useAutoAnimate()
+
   return (
     <div>
-        {isFetching && (
-            <div className="w-full h-64">
-                <Skeleton className="w-full h-64"/>
-            </div>
-        )}
-        {data && (
         <Card>
           <CardHeader>
             <CardTitle>iRating</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent ref={ animate }>
+          {isFetching && (
+            <div className="w-full h-64">
+                <Skeleton className="w-full h-64"/>
+            </div>
+          )}
+          {data && (
             <ChartContainer config={chartConfig}>
               <LineChart
                 accessibilityLayer
@@ -132,9 +135,10 @@ export default function IRatingChart({ custId }: { custId: number }) {
                 <ChartLegend content={<ChartLegendContent />} />
               </LineChart>
             </ChartContainer>
+            )}
           </CardContent>
         </Card>
-        )}
+
 
 
 

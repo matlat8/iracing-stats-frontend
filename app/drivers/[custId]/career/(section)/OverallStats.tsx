@@ -1,3 +1,5 @@
+'use client'
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
 import { Trophy, Flag, Star, TrendingUp } from 'lucide-react'
 import { useQuery } from "@tanstack/react-query"
@@ -20,37 +22,33 @@ export default function OverallStats({ cust_id }: { cust_id: number }) {
         { title: "Podiums", value: data.information.podiums, icon: TrendingUp },
       ]))
 
+    const [ animate ] = useAutoAnimate()
+
   return (
     <div className="max-h-max">
-        {isFetching && (
-            <div className="w-full h-32">
-                <Skeleton className="w-full h-full" />
-            </div>
-            )}
-        {data && (
         <Card>
           <CardHeader>
-            <CardTitle>{data.information.display_name} - Overall Stats</CardTitle>
+            <CardTitle ref={ animate }>{data && `${data.information.display_name} - Overall Stats`}</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent ref={ animate }>
+            {isFetching && <Skeleton className="w-full h-48 shimmer" />}
 
             {data && (
-            <div className="grid grid-cols-2 gap-4">
-                {stats && stats.map((stat) => (
-                <div key={stat.title} className="flex items-center space-x-2">
-                  <stat.icon className="h-4 w-4 text-muted-foreground" />
-                  <div>
-                    <p className="text-sm font-medium leading-none">{stat.title}</p>
-                    <p className="text-xl font-bold">{stat.value}</p>
-                </div>
-            </div>
+              <div className="grid grid-cols-2 gap-4">
+                  {stats && stats.map((stat) => (
+                  <div key={stat.title} className="flex items-center space-x-2">
+                    <stat.icon className="h-4 w-4 text-muted-foreground" />
+                    <div>
+                      <p className="text-sm font-medium leading-none">{stat.title}</p>
+                      <p className="text-xl font-bold">{stat.value}</p>
+                  </div>
+              </div>
             ))}
           </div>
             )}
 
           </CardContent>
         </Card>
-        )}
 
     </div>
     )
