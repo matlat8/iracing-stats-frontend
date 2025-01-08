@@ -16,6 +16,8 @@ import Link from "next/link";
 import TopDriversThisSeason from "../[custId]/career/TopDriversThisSeason";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { Button } from "~/components/ui/button";
+import { Spinner } from "~/components/Spinner";
 
 
 export default function DriverSearch() {
@@ -36,37 +38,42 @@ export default function DriverSearch() {
 
 function SearchResultsTable() {
     const [searchDriver, setSearchDriver] = useState<string>("");
-    const [debouncedSearchDriver, setDebouncedSearchDriver] = useState<string>("");
+    const [tableData, setTableData] = useState<iRacingStatAPI.$_RequestSchema["/drivers/search"]["data"]>([]);
+    const [searchHash, setSearchHash] = useState<string>("");
 
-    const { data } = useQuery({
-        queryKey: ["/drivers/search", searchDriver],
-        enabled: debouncedSearchDriver.length > 0,
-        queryFn: () => iRacingStatAPI.fetch(`/drivers/search?search_term=${searchDriver}` as "/drivers/search")
+    const { data, isFetching } = useQuery({
+        queryKey: ["/drivers/search", searchHash],
+        queryFn: () => iRacingStatAPI.fetch(`/drivers/search?search_term=${searchHash}` as "/drivers/search")
         .then(response => response && response.success && response.data),
     })
 
     useEffect(() => {
-        const handler = setTimeout(() => {
-          setDebouncedSearchDriver(searchDriver);
-        }, 1000);
-    
-        return () => {
-          clearTimeout(handler);
-        };
-      }, [searchDriver]);
+        if (data && data.length > 0) {
+            setTableData(data)
+        }
+    }, [data])
 
       const [ animate ] = useAutoAnimate()
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setSearchHash(searchDriver);
+    }
+
     return (
-        <Card className="h-[32rem] overflow-y-clip hover:overflow-y-scroll" ref={ animate }>
+        <Card className="h-[32rem] overflow-y-clip hover:overflow-y-auto" ref={ animate }>
             <CardHeader>
                 <CardTitle>
                     <div className="flex gap-4 items-center">
                         <p>Search</p>
-                        <Input 
-                            placeholder="Search for a driver" 
-                            onChange={(ctx) => (setSearchDriver(ctx.target.value))}
-                            />
+                        <form onSubmit={handleSubmit} className="flex gap-2">
+              <Input
+                placeholder="Search for a driver"
+                value={searchDriver}
+                onChange={(e) => setSearchDriver(e.target.value)}
+              />
+              <Button type="submit">Submit</Button>
+            </form>
                     </div>
                     
                 </CardTitle>
@@ -80,7 +87,12 @@ function SearchResultsTable() {
                         </TableRow>
                     </TableHeader>
                     <TableBody ref={ animate }>
-                        {data && data.map((driver, index) => (
+                        {isFetching && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-10">
+                                    <Spinner className="w-16 h-16" />
+                                </div>
+                            )}
+                        {tableData.map((driver, index) => (
                             <TableRow key={index}>
                                 <Link href={`/drivers/${driver.cust_id}/career`}><TableCell className="border-r w-[300px]">{driver.display_name}</TableCell></Link>
                                 <TableCell>{driver.club_name} {driver.country_code}</TableCell>

@@ -8,6 +8,7 @@ import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 import { useQueryParam } from "~/src/hooks";
 import { useEffect, useState } from "react";
+import { Spinner } from "~/components/Spinner";
 
 const chartConfig = {
     count_in_group: {
@@ -23,7 +24,7 @@ export default function IRatingDistributionChart() {
     const [ season, ] = useQueryParam<string>("season", "");
     const [ license, ] = useQueryParam<string>("license", "");
     
-    const { data, isError } = useQuery({
+    const { data, isFetching, isError } = useQuery({
         queryKey: ["irating", "distribution", year, season, license],
         queryFn: () => iRacingStatAPI.fetch(`/irating/distribution?year=${year}&quarter=${season}&license=${license}` as "/irating/distribution")
             .then(response => response && response.success && response)
@@ -41,50 +42,54 @@ export default function IRatingDistributionChart() {
                     <CardHeader>
                         <div className="flex">
                             <CardTitle>iRating Distribution</CardTitle>
-                            <div className="flex ml-auto gap-2">
-
-                            </div>
                         </div>
                     </CardHeader>
                     <CardContent>
-                        <ChartContainer config={chartConfig} className="max-h-96 w-full">
-                            <AreaChart 
-                                accessibilityLayer
-                                data={chartData}
-                                margin={{
-                                    left: 12,
-                                    right: 12,
-                                }}>
-                                    <CartesianGrid vertical={false} />
-                                    <XAxis
-                                        dataKey='irating_group'
-                                        tickLine={false}
-                                        axisLine={false}
-                                        tickMargin={10} />
-                                    <ChartTooltip 
-                                        cursor={true}
-                                        content={<ChartTooltipContent hideLabel includeHidden={true} />}
-                                        
+                        <div className="relative">
+                            {isFetching && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-10">
+                                    <Spinner className="w-16 h-16" />
+                                </div>
+                            )}
+                            <ChartContainer config={chartConfig} className="max-h-96 w-full">
+                                <AreaChart 
+                                    accessibilityLayer
+                                    data={chartData}
+                                    margin={{
+                                        left: 12,
+                                        right: 12,
+                                    }}>
+                                        <CartesianGrid vertical={false} />
+                                        <XAxis
+                                            dataKey='irating_group'
+                                            tickLine={false}
+                                            axisLine={false}
+                                            tickMargin={10} />
+                                        <ChartTooltip 
+                                            cursor={true}
+                                            content={<ChartTooltipContent hideLabel includeHidden={true} />}
+
+                                            />
+                                        <Area
+                                            dataKey='count_in_group'
+                                            type="step"
+                                            fill="hsl(var(--chart-1))"
+                                            fillOpacity={0.4}
+                                            stroke="hsl(var(--chart-1))"
+
+                                            />
+                                        <Area
+                                            dataKey='percentile'
+                                            type="natural"
+                                            fill="transparent"
+                                            fillOpacity={0}
+                                            stroke="hsl(var(--chart-1))"
+                                            strokeOpacity={0}
                                         />
-                                    <Area
-                                        dataKey='count_in_group'
-                                        type="step"
-                                        fill="hsl(var(--chart-1))"
-                                        fillOpacity={0.4}
-                                        stroke="hsl(var(--chart-1))"
-                                        
-                                        />
-                                    <Area
-                                        dataKey='percentile'
-                                        type="natural"
-                                        fill="transparent"
-                                        fillOpacity={0}
-                                        stroke="hsl(var(--chart-1))"
-                                        strokeOpacity={0}
-                                    />
-                            
-                            </AreaChart>
-                        </ChartContainer>
+
+                                </AreaChart>
+                            </ChartContainer>
+                        </div>
                     </CardContent>
                 </Card>
             
