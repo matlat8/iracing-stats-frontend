@@ -23,7 +23,7 @@ export default function IRatingDistributionChart() {
     const [ season, ] = useQueryParam<string>("season", "");
     const [ license, ] = useQueryParam<string>("license", "");
     
-    const { data, isFetching, isError } = useQuery({
+    const { data, isError } = useQuery({
         queryKey: ["irating", "distribution", year, season, license],
         queryFn: () => iRacingStatAPI.fetch(`/irating/distribution?year=${year}&quarter=${season}&license=${license}` as "/irating/distribution")
             .then(response => response && response.success && response)
