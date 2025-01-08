@@ -29,6 +29,19 @@ declare namespace iRacingStatAPI {
                 country_code: string;
             }[];
         },
+        "/drivers/top/wins": {
+            data: {
+                cust_id: number;
+                display_name: number;
+                wins: number;
+                oval_wins: number;
+                dirt_oval_wins: number;
+                dirt_road_wins: number;
+                sportscar_wins: number;
+                formulacar_wins: number
+            }[];
+        }, 
+
         "/drivers/{custId}": {
             information: {
                 cust_id: number;
@@ -212,6 +225,7 @@ declare namespace iRacingStatAPI {
             distribution: {
                 years: number[];
                 quarters: number[];
+                license_categories: string[];
             }
         }
 

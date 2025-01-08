@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "~/components/ui/chart";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 import { useQueryParam } from "~/src/hooks";
+import { useEffect, useState } from "react";
 
 const chartConfig = {
     count_in_group: {
@@ -17,19 +18,25 @@ const chartConfig = {
   } satisfies ChartConfig;
 
 export default function IRatingDistributionChart() {
+    const [ chartData, setChartData ] = useState<iRacingStatAPI.$_RequestSchema["/irating/distribution"]["distribution"]>([]);
     const [ year, ] = useQueryParam<string>("year", "");
+    const [ season, ] = useQueryParam<string>("season", "");
+    const [ license, ] = useQueryParam<string>("license", "");
     
     const { data, isFetching, isError } = useQuery({
-        queryKey: ["irating", "distribution", year],
-        queryFn: () => iRacingStatAPI.fetch(`/irating/distribution?year=${year}` as "/irating/distribution")
+        queryKey: ["irating", "distribution", year, season, license],
+        queryFn: () => iRacingStatAPI.fetch(`/irating/distribution?year=${year}&quarter=${season}&license=${license}` as "/irating/distribution")
             .then(response => response && response.success && response)
     })
+    useEffect(() => {
+        if (data && data.success) {
+          setChartData(data.distribution);
+        }
+      }, [data]);
 
     return (
         <div>
-            {isFetching && <p>Loading...</p>}
             {isError && <p>Error fetching iRating distribution</p>}
-            {data && data.success && (
                 <Card>
                     <CardHeader>
                         <div className="flex">
@@ -43,7 +50,7 @@ export default function IRatingDistributionChart() {
                         <ChartContainer config={chartConfig} className="max-h-96 w-full">
                             <AreaChart 
                                 accessibilityLayer
-                                data={data.distribution}
+                                data={chartData}
                                 margin={{
                                     left: 12,
                                     right: 12,
@@ -80,7 +87,7 @@ export default function IRatingDistributionChart() {
                         </ChartContainer>
                     </CardContent>
                 </Card>
-            )}
+            
         </div>
     )
 }

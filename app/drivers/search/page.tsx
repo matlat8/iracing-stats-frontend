@@ -2,25 +2,48 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { Container } from "~/components/Container";
 import { Input } from "~/components/ui/input";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
   } from "~/components/ui/table"
 import Link from "next/link";
-import { Skeleton } from "~/components/ui/skeleton";
+import TopDriversThisSeason from "../[custId]/career/TopDriversThisSeason";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 
 export default function DriverSearch() {
+    
+    return (
+        <div className="grid grid-cols-2 justify-center items-center max-w-7xl mx-auto px-2 gap-4">
+            <div>
+                <SearchResultsTable />
+            </div>
+            <div>
+                <TopDriversThisSeason />
+            </div>
+
+
+        </div>
+    )
+}
+
+function SearchResultsTable() {
     const [searchDriver, setSearchDriver] = useState<string>("");
     const [debouncedSearchDriver, setDebouncedSearchDriver] = useState<string>("");
+
+    const { data } = useQuery({
+        queryKey: ["/drivers/search", searchDriver],
+        enabled: debouncedSearchDriver.length > 0,
+        queryFn: () => iRacingStatAPI.fetch(`/drivers/search?search_term=${searchDriver}` as "/drivers/search")
+        .then(response => response && response.success && response.data),
+    })
 
     useEffect(() => {
         const handler = setTimeout(() => {
@@ -32,54 +55,40 @@ export default function DriverSearch() {
         };
       }, [searchDriver]);
 
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ["/drivers/search", searchDriver],
-        enabled: debouncedSearchDriver.length > 0,
-        queryFn: () => iRacingStatAPI.fetch(`/drivers/search?search_term=${searchDriver}` as "/drivers/search")
-        .then(response => response && response.success && response.data),
-    })
-
+      const [ animate ] = useAutoAnimate()
 
     return (
-        <Container className="p-4">
-            <Input 
-                placeholder="Search for a driver" 
-                onChange={(ctx) => (setSearchDriver(ctx.target.value))}
-                className="bg-white w-full dark:bg-gray-800"
-                />
-
-            <div className="border border-gray-300 rounded-md mt-4">
-                {isLoading && <Skeleton className="w-[675px] h-[200px] rounded-md" />}
-                {isError && <p>Error</p>}
-                {data && <SearchResultsTable data={data} />}
-            </div>
-
-
-        </Container>
-    )
-}
-
-function SearchResultsTable(data: iRacingStatAPI.$_RequestSchema["/drivers/search"]) {
-
-    return (
-        <div>
-            <Table>
-                <TableCaption>Search Results</TableCaption>
-                <TableHeader>
-                    <TableRow className="bg-gray-300">
-                        <TableHead className="w-[300px] border-gray-200">Driver</TableHead>
-                        <TableHead className="w-[150px]">Location</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {data.data.map((driver, index) => (
-                        <TableRow key={index} className="bg-white dark:bg-black">
-                            <Link href={`/drivers/${driver.cust_id}/career`}><TableCell className="border-r w-[300px]">{driver.display_name}</TableCell></Link>
-                            <TableCell>{driver.club_name} {driver.country_code}</TableCell>
+        <Card className="h-[32rem] overflow-y-clip hover:overflow-y-scroll" ref={ animate }>
+            <CardHeader>
+                <CardTitle>
+                    <div className="flex gap-4 items-center">
+                        <p>Search</p>
+                        <Input 
+                            placeholder="Search for a driver" 
+                            onChange={(ctx) => (setSearchDriver(ctx.target.value))}
+                            />
+                    </div>
+                    
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-[300px] border-gray-200">Driver</TableHead>
+                            <TableHead className="w-[150px]">Location</TableHead>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </div>
+                    </TableHeader>
+                    <TableBody ref={ animate }>
+                        {data && data.map((driver, index) => (
+                            <TableRow key={index}>
+                                <Link href={`/drivers/${driver.cust_id}/career`}><TableCell className="border-r w-[300px]">{driver.display_name}</TableCell></Link>
+                                <TableCell>{driver.club_name} {driver.country_code}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
+        </Card>
     )
 }
