@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
-import { Thermometer, Droplets, Wind } from 'lucide-react'
+import { Thermometer } from 'lucide-react'
 import { useQuery } from "@tanstack/react-query"
 import { iRacingStatAPI } from "~/src/iRacingStatAPI"
 import { Skeleton } from "~/components/ui/skeleton"
@@ -67,22 +67,8 @@ export function SessionOverview({ session_id }: { session_id: number }) {
               <div className="flex items-center gap-2">
                 <Thermometer className="h-4 w-4 text-muted-foreground" />
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">Temperature</p>
-                  <p className="text-sm text-muted-foreground">69°F</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Droplets className="h-4 w-4 text-muted-foreground" />
-                <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">Humidity</p>
-                  <p className="text-sm text-muted-foreground">69%</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Wind className="h-4 w-4 text-muted-foreground" />
-                <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">Wind Speed</p>
-                  <p className="text-sm text-muted-foreground">69 mph</p>
+                  <p className="text-sm font-medium leading-none">Weather Data</p>
+                  <p className="text-sm text-muted-foreground">Coming soon</p>
                 </div>
               </div>
             </div>

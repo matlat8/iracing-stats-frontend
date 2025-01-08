@@ -64,8 +64,8 @@ export default function IRatingChart({ custId }: { custId: number }) {
           </CardHeader>
           <CardContent ref={ animate }>
           {isFetching && (
-            <div className="w-full h-64">
-                <Skeleton className="w-full h-64"/>
+            <div className="w-full min-h-36 max-h-64">
+                <Skeleton className="w-full h-auto shimmer"/>
             </div>
           )}
           {data && (

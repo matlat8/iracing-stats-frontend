@@ -28,10 +28,17 @@ export default function OverallStats({ cust_id }: { cust_id: number }) {
     <div className="max-h-max">
         <Card>
           <CardHeader>
-            <CardTitle ref={ animate }>{data && `${data.information.display_name} - Overall Stats`}</CardTitle>
+            <CardTitle ref={ animate }>Overall Stats {data && `- ${data.information.display_name}`}</CardTitle>
           </CardHeader>
           <CardContent ref={ animate }>
-            {isFetching && <Skeleton className="w-full h-48 shimmer" />}
+            {isFetching && (
+              <div className="grid grid-cols-2 gap-4">
+                <Skeleton className="w-24 h-12 shimmer" />
+                <Skeleton className="w-24 h-12 shimmer" />
+                <Skeleton className="w-24 h-12 shimmer" />
+                <Skeleton className="w-24 h-12 shimmer" />
+              </div>
+            )}
 
             {data && (
               <div className="grid grid-cols-2 gap-4">

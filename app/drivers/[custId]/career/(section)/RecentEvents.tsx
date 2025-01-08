@@ -47,23 +47,26 @@ export default function RecentEvents({ custId }: { custId: number }) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow>
+                  {Array.from({ length: 2 }, (_, i) => (
+                      
+                    <TableRow key={i}>
                         <TableCell>
-                            <Skeleton className="w-24 h-8"/>
+                            <Skeleton className="w-24 h-8 shimmer"/>
                         </TableCell>
                         <TableCell>
-                            <Skeleton className="w-64 h-8"/>
+                            <Skeleton className="w-64 h-8 shimmer"/>
                         </TableCell>
                         <TableCell>
-                            <Skeleton className="w-16 h-8"/>
+                            <Skeleton className="w-16 h-8 shimmer"/>
                         </TableCell>
                         <TableCell>
-                            <Skeleton className="w-16 h-8"/>
+                            <Skeleton className="w-16 h-8 shimmer"/>
                         </TableCell>
                         <TableCell>
-                            <Skeleton className="w-16 h-8"/>
+                            <Skeleton className="w-16 h-8 shimmer"/>
                         </TableCell>
                     </TableRow>
+                    ))}
                 </TableBody>
             </Table>
             
