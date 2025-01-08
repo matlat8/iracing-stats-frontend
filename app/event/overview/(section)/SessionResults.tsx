@@ -8,6 +8,8 @@ import { iRacingStatAPI } from "~/src/iRacingStatAPI"
 import { FaCarCrash, FaFlagCheckered, FaStopwatch, FaTrophy } from "react-icons/fa";
 import { TooltipContent, TooltipTrigger, Tooltip } from "~/components/ui/tooltip"
 import { timeToRaceFormat } from "~/src/time"
+import LoadingTableRow from "~/components/LoadingTableRow"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 export default function SessionResults({ sessionId }: { sessionId: number }) {
     const { data, isFetching, isError } = useQuery({
@@ -15,6 +17,9 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
         queryFn: () => iRacingStatAPI.fetch(`/sessions/${sessionId}/results` as "/sessions/{sessionId}/results")
             .then(response => response && response.success && response.data ),
     })
+
+    const [ animate ] = useAutoAnimate()
+
     return (
         <Card>
             <CardHeader>
@@ -22,9 +27,8 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
             </CardHeader>
             <CardContent>
                 {isError && <p>Error fetching session results</p>}
-                {isFetching && <p>Loading...</p>}
                 {data && data.length === 0 && <p>No results</p>}
-                {data && data.length > 0 && (
+                
                     <Table>
                         <TableHeader>
                             <TableRow>
@@ -98,9 +102,11 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
                                 <TableHead>CPI</TableHead>
                             </TableRow>
                         </TableHeader>
-                        <TableBody>
-                            {data.map((result, index) => {
-
+                        <TableBody ref={ animate }>
+                            {isFetching && (
+                                <LoadingTableRow cols={10}/>
+                            )}
+                            {data && data.length > 0 && data.map((result, index) => {
                                 return (
                                     <TableRow key={index}>
                                         <TableCell>
@@ -155,10 +161,11 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
                                             </p>
                                         </TableCell>
                                     </TableRow>
-                            )})}
+                                    )}
+                            )}
                         </TableBody>
                     </Table>
-                )}
+                
             </CardContent>
         </Card>
     )

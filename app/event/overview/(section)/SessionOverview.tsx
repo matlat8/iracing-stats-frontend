@@ -5,6 +5,7 @@ import { Thermometer } from 'lucide-react'
 import { useQuery } from "@tanstack/react-query"
 import { iRacingStatAPI } from "~/src/iRacingStatAPI"
 import { Skeleton } from "~/components/ui/skeleton"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 export function SessionOverview({ session_id }: { session_id: number }) {
     const { data, isFetching, isError } = useQuery({
@@ -13,35 +14,38 @@ export function SessionOverview({ session_id }: { session_id: number }) {
             .then(response => response && response.success && response.data ),
     })
 
+    const [ animate ] = useAutoAnimate()
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Session Overview</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent ref={ animate }>
         {isError && <p>Error fetching session</p>}
         {isFetching && (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="w-full grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <div className="space-y-2">
                     <p className="text-sm font-medium text-muted-foreground">Track</p>
-                    <Skeleton className="w-48 h-32" />
+                    <Skeleton className="w-[11rem] h-32 shimmer" />
                 </div>
                 <div className="space-y-2">
                     <p className="text-sm font-medium text-muted-foreground">Series</p>
-                    <Skeleton className="w-48 h-32" />
+                    <Skeleton className="w-[11rem] h-32 shimmer" />
                 </div>
                 <div className="space-y-2">
                     <p className="text-sm font-medium text-muted-foreground">Date</p>
-                    <Skeleton className="w-48 h-32" />
-                </div>
+                    <Skeleton className="w-[11rem] h-32 shimmer" />
+              </div>
                 <div className="space-y-2">
                     <p className="text-sm font-medium text-muted-foreground"># Participants</p>
-                    <Skeleton className="w-48 h-32" />
+                    <Skeleton className="w-[11rem] h-32 shimmer" />
                 </div>
                 <div className="col-span-full">
-                    <Skeleton className="w-full h-24" />
+                    <Skeleton className="w-full h-24 shimmer" />
                 </div>
             </div>
+            
         )}
 
         {data && (
