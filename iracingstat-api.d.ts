@@ -157,6 +157,14 @@ declare namespace iRacingStatAPI {
                 sportscar_ir: number;
                 formulacar_ir: number;
             }[];
+        },
+        "/drivers/{custId}/tracks": {
+            data: {
+                track: string;
+                raced: number;
+                ir_change: number;
+                cpi_change: number;
+            }[];
         }
     }
 

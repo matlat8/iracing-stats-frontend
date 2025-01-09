@@ -6,17 +6,12 @@ import IRatingChart from './(section)/iRatingChart';
 import RecentEvents from './(section)/RecentEvents';
 import Achievements from './(section)/Achievements';
 import StatsOvertimePivot from '../reports/performance/(section)/StatsOvertimePivot';
+import TopTrack from './(section)/TopTrack';
 
 export default function CareerPage() {
     
     const { custId } = useParams<{ custId: string }>();
 
-    // Check if cust_id exists
-    // if (!Number(router.query.custId) ) {
-    //     // Redirect to '/'
-    //     router.push('/');
-    //     return null;
-    // }
     // <ReportsCard custId={ Number(custId) }/>
     return (
         <div className="container mx-auto p-4">
@@ -32,6 +27,9 @@ export default function CareerPage() {
             </div>
             <div className='mt-6'>
                 <StatsOvertimePivot custId={ Number(custId) } />
+            </div>
+            <div className='mt-6 grid grid-cols-2'>
+                <TopTrack custId={ Number(custId) } />
             </div>
             {false && (
             <div className="mt-6">

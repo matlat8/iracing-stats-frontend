@@ -25,7 +25,6 @@ export default function OverallStats({ cust_id }: { cust_id: number }) {
     const [ animate ] = useAutoAnimate()
 
   return (
-    <div className="max-h-max">
         <Card>
           <CardHeader>
             <CardTitle ref={ animate }>Overall Stats {data && `- ${data.information.display_name}`}</CardTitle>
@@ -57,6 +56,5 @@ export default function OverallStats({ cust_id }: { cust_id: number }) {
           </CardContent>
         </Card>
 
-    </div>
     )
 }
