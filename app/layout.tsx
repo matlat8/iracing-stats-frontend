@@ -4,7 +4,7 @@ import { AppSidebar } from "~/components/app-sidebar"
 import "./globals.css";
 import { QueryProvider } from "./QueryProvider";
 import { Montserrat } from 'next/font/google'
-import { Analytics } from "@vercel/analytics/react"
+//import { Analytics } from "@vercel/analytics/react"
 import { TooltipProvider } from "~/components/ui/tooltip";
 import { Suspense } from "react";
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -14,7 +14,6 @@ const montserrat = Montserrat({ subsets: ['latin']})
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <QueryProvider>
-      <Analytics />
       <html lang="en" suppressHydrationWarning>
         <head>
           <title>iRacing Stat</title>
