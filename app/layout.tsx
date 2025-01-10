@@ -24,7 +24,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider attribute="class" disableTransitionOnChange>
           <TooltipProvider>
             <Suspense>
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''}/>
               <SidebarProvider>
                 <AppSidebar />
                 <main
@@ -32,6 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 style={montserrat.style}>
                   <SidebarTrigger />
                   {children}
+                  <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''}/>
                 </main>
               </SidebarProvider>
             </Suspense>
