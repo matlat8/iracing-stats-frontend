@@ -28,7 +28,7 @@ export default function CareerPage() {
             <div className='mt-6'>
                 <StatsOvertimePivot custId={ Number(custId) } />
             </div>
-            <div className='mt-6 grid grid-cols-2'>
+            <div className='mt-6 grid lg:grid-cols-2 md:grid-cols-1'>
                 <TopTrack custId={ Number(custId) } />
             </div>
             {false && (

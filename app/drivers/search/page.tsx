@@ -23,7 +23,7 @@ import { Spinner } from "~/components/Spinner";
 export default function DriverSearch() {
     
     return (
-        <div className="grid grid-cols-2 justify-center items-center max-w-7xl mx-auto px-2 gap-4">
+        <div className="grid lg:grid-cols-2 md:grid-cols-1 justify-center items-center max-w-7xl mx-auto px-2 gap-4 ">
             <div>
                 <SearchResultsTable />
             </div>
@@ -43,7 +43,7 @@ function SearchResultsTable() {
 
     const { data, isFetching } = useQuery({
         queryKey: ["/drivers/search", searchHash],
-        queryFn: () => iRacingStatAPI.fetch(`/drivers/search?search_term=${searchHash}` as "/drivers/search")
+        queryFn: () => iRacingStatAPI.fetch(`/drivers/search?search_term=${searchHash}&limit=100` as "/drivers/search")
         .then(response => response && response.success && response.data),
     })
 
@@ -66,14 +66,16 @@ function SearchResultsTable() {
                 <CardTitle>
                     <div className="flex gap-4 items-center">
                         <p>Search</p>
-                        <form onSubmit={handleSubmit} className="flex gap-2">
-              <Input
-                placeholder="Search for a driver"
-                value={searchDriver}
-                onChange={(e) => setSearchDriver(e.target.value)}
-              />
-              <Button type="submit">Submit</Button>
-            </form>
+                        <form onSubmit={handleSubmit} className="flex gap-2 flex-grow">
+                            <Input
+                              placeholder="Search for a driver"
+                              value={searchDriver}
+                              className="flex-grow"
+                              onChange={(e) => setSearchDriver(e.target.value)
+                              }
+                            />
+                            <Button type="submit">Submit</Button>
+                        </form>
                     </div>
                     
                 </CardTitle>
