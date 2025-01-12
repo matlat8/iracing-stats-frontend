@@ -2,8 +2,11 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaTwitch } from 'react-icons/fa'
+import { FaChartBar, FaTwitch } from 'react-icons/fa'
 import { Card, CardContent } from '~/components/ui/card'
+import HomeHero from './(section)/Hero'
+import { MdSportsMotorsports } from "react-icons/md";
+import QuickAccessCard from './(section)/QuickAccessCard'
 
 
 export const metadata: Metadata = {
@@ -43,19 +46,43 @@ const quickDrivers = [{
   twitch: 'https://www.twitch.tv/davecam'
 }]
 
+const quickAccessCards = [{
+  link: '/drivers/search',
+  title: 'Driver Stats',
+  icon: MdSportsMotorsports,
+  description: 'Explore driver statistics and career data.'
+}, {
+  link: '/irating',
+  title: 'iRating Distribution',
+  icon: FaChartBar,
+  description: 'View the distribution of iRating across the iRacing platform.'
+}, {
+  link: '/series',
+  title: 'Series Stats',
+  icon: FaChartBar,
+  description: 'Analyze series participation and results.'
+}, {
+  link: '/teams',
+  title: 'Team Stats',
+  icon: FaChartBar,
+  description: 'Discover team statistics and results.'
+}]
+
 export default function Home() {
   return (
     <div className='lg:max-w-7xl flex flex-col items-center mx-auto px-2'>
-      <div className='flex'>
-      <Card>
-        <CardContent className='p-4'>
-          <div className='text-center'>
-            <h1 className='text-3xl font-bold'>Welcome to iRacing Stat</h1>
-            <p>Welcome to iRacing Stat – your ultimate hub for iRacing analytics. Dive into detailed session insights, track performance metrics, and uncover actionable data about drivers and races. Elevate your competitive edge with data-driven decisions</p>
-          </div>
-          </CardContent>
-      </Card>
+      <HomeHero />
+      <section className='mr-auto py-8'>
+        <h2 className="text-2xl font-bold tracking-tight">Quick Access</h2>
+        <p className="text-muted-foreground">Jump directly to specific analytics pages</p>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {quickAccessCards.map((card, index) => (
+          <Link href={card.link} key={index}>
+            <QuickAccessCard key={index} props={card} />
+          </Link>
+        ))}
       </div>
+      </section>
       <div className='flex items-center mt-12 w-full gap-4'>
         <div>
           <h2 className='text-2xl font-bold'>Popular Streamers</h2>
