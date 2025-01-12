@@ -83,11 +83,13 @@ function QuickDriverCard({ title, custId, image, twitch }: { title: string, cust
       <Card className='transition-transform transform hover:scale-105 hover:shadow-lg'>
         <CardContent className='p-4 flex gap-2'>
           <Image src={image} width={70} height={70} alt={title} className='rounded-full'/>
-          <div>
+          <div className='flex flex-col justify-between'>
             <h2 className='text-lg font-bold'>{title}</h2>
-            <Link href={twitch}>
-              <FaTwitch className='transition-transform transform hover:scale-125 hover:shadow-lg text-purple-500'/>
-            </Link>
+            <div className='mt-auto'>
+              <Link href={twitch} className='inline-block'>
+                <FaTwitch className='transition-transform transform hover:scale-125 hover:shadow-lg text-purple-500'/>
+              </Link>
+            </div>
           </div>
         </CardContent>
       </Card>
