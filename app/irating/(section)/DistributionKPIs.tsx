@@ -66,7 +66,7 @@ export default function DistributionKPIs() {
             <Card key={kpi.label} className="flex items-center justify-center pt-4">
                 <CardContent className="flex flex-col items-center justify-center">
                     
-                        <div className="bg-red-400 dark:bg-red-700 h-16 w-16 rounded-full flex items-center justify-center shadow-sm">
+                        <div className="bg-gradient-to-r from-red-400 to-red-500 dark:from-red-700 dark:to-red-800 h-16 w-16 rounded-full flex items-center justify-center shadow-sm">
                             {kpi.icon && <kpi.icon className="text-white text-3xl" />}
                         </div>
                         <div className="flex items-center justify-center gap-1">
