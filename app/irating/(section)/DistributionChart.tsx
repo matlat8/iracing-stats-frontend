@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Activity } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Card, CardContent } from "~/components/ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "~/components/ui/chart";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 import { useQueryParam } from "~/src/hooks";
@@ -38,11 +38,7 @@ export default function IRatingDistributionChart() {
         <div>
             {isError && <p>Error fetching iRating distribution</p>}
                 <Card>
-                    <CardHeader>
-                        <div className="flex">
-                            <CardTitle>iRating Distribution</CardTitle>
-                        </div>
-                    </CardHeader>
+
                     <CardContent>
                         <div className="relative">
                             {isFetching && (

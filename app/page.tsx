@@ -10,8 +10,8 @@ import QuickAccessCard from './(section)/QuickAccessCard'
 
 
 export const metadata: Metadata = {
-  title: 'Home',
-  description: 'Deep dive into iRacing stats across the platform. Explore statistics to gain deeper insight into your iRacing career.',
+  title: 'Home | iRacing Stat',
+  description: 'Deep dive into iRacing stats across the platform. Explore statistics to gain deeper insight into your iRacing career. View statistics across the entire platform and compare your stats to others.',
   keywords: ['iRacing', 'Stats', 'Racing', 'Sim Racing', 'iRacing Stats', 'iRacing Career', 'iRacing Profile'],
 
 }
@@ -71,7 +71,10 @@ const quickAccessCards = [{
 export default function Home() {
   return (
     <div className='lg:max-w-7xl flex flex-col items-center mx-auto px-2'>
-      <HomeHero />
+      <div className='py-36'>
+        <HomeHero />
+
+      </div>
       <section className='mr-auto py-8'>
         <h2 className="text-2xl font-bold tracking-tight">Quick Access</h2>
         <p className="text-muted-foreground">Jump directly to specific analytics pages</p>

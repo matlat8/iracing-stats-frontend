@@ -1,6 +1,7 @@
 'use client';
 
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { useQueryParam } from "~/src/hooks";
@@ -21,15 +22,25 @@ export default function FiltersCard() {
     const licenses = data
     ? Array.from(new Set(data.distribution.map((d) => d.license_category)))
     : [];
-    const periods = data
-      ? Array.from(
-          new Set(
-            data.distribution
-              .map((p) => p.period)
-              .reduce<string[]>((acc, val) => acc.concat(val), [])
+    const periods = useMemo(() => {
+      return data
+        ? Array.from(
+            new Set(
+              data.distribution
+                .map((p) => p.period)
+                .reduce<string[]>((acc, val) => acc.concat(val), [])
+            )
           )
-        )
-      : [];
+        : [];
+    }, [data]);
+
+    useEffect(() => {
+        if (data) {
+            setLicense('Sports Car');
+            const latestPeriod = periods.length > 0 ? periods[0] : '';
+            setPeriod(latestPeriod);
+        }
+    }, [data, periods, setLicense, setPeriod]);
 
     const handlePeriodChange = (year: string) => {
         setPeriod(year)
