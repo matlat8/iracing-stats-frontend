@@ -231,10 +231,9 @@ declare namespace iRacingStatAPI {
     interface $_RequestSchema {
         "/irating/filters": {
             distribution: {
-                years: number[];
-                quarters: number[];
-                license_categories: string[];
-            }
+                license_category: string;
+                period: string;
+            }[];
         }
 
         "/irating/distribution": {
@@ -243,6 +242,24 @@ declare namespace iRacingStatAPI {
                 count_in_group: number;
                 percentile: number;
             }[];
+            kpis: {
+                license_category: string;
+                season_year: number;
+                season_quarter: number;
+                median_irating: number;
+                yago_median_irating: number;
+                top_1_percent: number;
+                yago_top_1_percent: number;
+                top_5_percent: number;
+                yago_top_5_percent: number;
+                top_10_percent: number;
+                yago_top_10_percent: number;
+                rating_std_dev: number;
+                yago_rating_std_dev: number;
+                avg_irating: number;
+                yago_avg_irating: number;
+                active_drivers: number;
+            }
         };
     }
 

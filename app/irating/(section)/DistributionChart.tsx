@@ -20,13 +20,12 @@ const chartConfig = {
 
 export default function IRatingDistributionChart() {
     const [ chartData, setChartData ] = useState<iRacingStatAPI.$_RequestSchema["/irating/distribution"]["distribution"]>([]);
-    const [ year, ] = useQueryParam<string>("year", "");
-    const [ season, ] = useQueryParam<string>("season", "");
+    const [ period, ] = useQueryParam<string>("period", "");
     const [ license, ] = useQueryParam<string>("license", "");
     
     const { data, isFetching, isError } = useQuery({
-        queryKey: ["irating", "distribution", year, season, license],
-        queryFn: () => iRacingStatAPI.fetch(`/irating/distribution?year=${year}&quarter=${season}&license=${license}` as "/irating/distribution")
+        queryKey: ["irating", "distribution", period, license],
+        queryFn: () => iRacingStatAPI.fetch(`/irating/distribution?&period=${period}&license=${license}` as "/irating/distribution")
             .then(response => response && response.success && response)
     })
     useEffect(() => {
@@ -64,7 +63,9 @@ export default function IRatingDistributionChart() {
                                             dataKey='irating_group'
                                             tickLine={false}
                                             axisLine={false}
-                                            tickMargin={10} />
+                                            tickMargin={10} 
+                                            type="number"
+                                            domain={[0, 4000]} />
                                         <ChartTooltip 
                                             cursor={true}
                                             content={<ChartTooltipContent hideLabel includeHidden={true} />}
