@@ -16,8 +16,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <QueryProvider>
       <Analytics />
       <html lang="en" suppressHydrationWarning>
-        <head>
-        </head>
         <body>
 
         <ThemeProvider attribute="class" disableTransitionOnChange>
