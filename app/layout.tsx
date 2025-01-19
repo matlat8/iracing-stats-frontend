@@ -7,7 +7,7 @@ import { Montserrat } from 'next/font/google'
 import { Analytics } from "@vercel/analytics/react"
 import { TooltipProvider } from "~/components/ui/tooltip";
 import { Suspense } from "react";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const montserrat = Montserrat({ subsets: ['latin']})
  

@@ -61,11 +61,6 @@ const quickAccessCards = [{
   title: 'Series Stats',
   icon: FaChartBar,
   description: 'Analyze series participation and results.'
-}, {
-  link: '/teams',
-  title: 'Team Stats',
-  icon: FaChartBar,
-  description: 'Discover team statistics and results.'
 }]
 
 export default function Home() {

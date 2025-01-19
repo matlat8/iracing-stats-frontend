@@ -66,7 +66,7 @@ export default function FiltersCard() {
                         </SelectTrigger>
                         <SelectContent>
                             {licenses && licenses.map(license => (
-                                <SelectItem key={license} value={license}>{license}</SelectItem>
+                                    <SelectItem key={license} value={license}>{license}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>

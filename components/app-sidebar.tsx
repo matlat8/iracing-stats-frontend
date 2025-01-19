@@ -1,5 +1,5 @@
 'use client'
-import { Home, Search, LineChart } from "lucide-react"
+import { Home, LineChart } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -19,6 +19,8 @@ import LogoLight from "~/public/logo-horizontal-light.png"
 import LogoDark from "~/public/logo-horizontal-dark.png"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
+import { MdEventNote } from "react-icons/md"
+import { TbHelmet } from "react-icons/tb"
 
 const items = [
   {
@@ -29,7 +31,12 @@ const items = [
   {
     title: "Drivers",
     url: "/drivers/search",
-    icon: Search
+    urlMatch: "/drivers",
+    icon: TbHelmet
+  },{
+    title: 'Series',
+    url: '/series',
+    icon: MdEventNote
   }
 ]
   

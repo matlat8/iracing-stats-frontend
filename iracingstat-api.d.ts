@@ -263,4 +263,58 @@ declare namespace iRacingStatAPI {
         };
     }
 
+    interface $_RequestSchema {
+        "/series/this_week": {
+            data: {
+                series_id: number;
+                series_name: string;
+                series_short_name: string;
+                license_category: string;
+                race_week_num: number;
+                event_count: number;
+            }[];
+        },
+
+        "/series/{seriesId}": {
+            seasons: {
+                season_id: number;
+                series_id: number;
+                season_name: string;
+                active: boolean;
+                car_class_ids: number[];
+                car_switching: boolean;
+                car_types: string[][];
+                caution_laps_do_not_count: boolean;
+                complete: boolean;
+                cross_license: boolean;
+                distributed_matchmaking: boolean;
+                driver_change_rule: number;
+                driver_changes: boolean;
+                drops: number;
+                enable_pitlane_collisions: boolean;
+                fixed_setup: boolean;
+                green_white_checkered_limit: number;
+                grid_by_class: boolean;
+                hardcore_level: number;
+                has_supersessions: boolean;
+                ignore_license_for_practice: boolean;
+                incident_limit: number;
+                incident_warn_mode: number;
+                is_heat_racing: boolean;
+                lucky_dog: boolean;
+                max_team_drivers: number;
+                max_weeks: number;
+                min_team_drivers: number;
+                multiclass: boolean;
+                official: boolean;
+                op_duration: number;
+                race_week: number;
+                schedule_description: number;
+                season_year: number;
+                season_quarter: number;
+                season_short_name: string;
+                track_types: string[][];
+            }[];
+        }
+    }
 }
