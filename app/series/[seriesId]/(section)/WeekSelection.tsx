@@ -29,7 +29,7 @@ export default function WeekSelection() {
                     <CardContent className="p-0">
                         <div className="grid grid-cols-[auto_1fr_1fr_auto] w-full">
                             <div className="flex items-center justify-center pl-8">
-                                <Link href={`/series/${seriesId}/${seasonId}/${week.race_week_num}`}>
+                                <Link href={`/week/overview?seasonId=${seasonId}&?weekNum=${week.race_week_num}`}>
                                     <Button>
                                         View
                                     </Button>
@@ -44,15 +44,15 @@ export default function WeekSelection() {
                             </div>
                             <div className="flex justify-end items-center gap-2 pr-2">
                                 {week.cars.slice(0, 4).map((car) => (
-                                    <Image key={car.car_name} 
-                                            src={car.car_image} 
-                                            alt={car.car_name} 
-                                            width={64} 
-                                            height={64} 
-                                            sizes="100vw"
-                                            style={{ width: '15%', height: 'auto' }}
-                                            className="rounded-full aspect-square object-cover border-4 border-slate-500"
-                                            />
+                                        <Image key={car.car_name} 
+                                                src={car.car_image} 
+                                                alt={car.car_name} 
+                                                width={128} 
+                                                height={128} 
+                                                sizes="100vw"
+                                                style={{ width: '15%', height: 'auto' }}
+                                                className="rounded-full aspect-square object-cover border-4 border-slate-500"
+                                                />
                                 ))}
                             </div>
                             <div className="flex items-end ml-auto justify-end border-l-2">
