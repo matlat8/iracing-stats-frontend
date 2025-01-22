@@ -315,6 +315,37 @@ declare namespace iRacingStatAPI {
                 season_short_name: string;
                 track_types: string[][];
             }[];
+        },
+
+
+        "/series/{seriesId}/seasons": {
+            seasons: {
+                season_id: number;
+                season_year: number;
+                season_quarter: number;
+                season_title: string;
+                min_st: string;
+                max_st: string;
+                is_active_season: boolean;
+                practice_sessions: number;
+                race_sessions: number;
+                time_trial_sessions: number;
+                total_sessions: number;
+            }[];
+        },
+        "/series/{seriesId}/seasons/{seasonId}/weeks": {
+            weeks: {
+                race_week_num: number;
+                track_name: string;
+                config_name: string;
+                small_track_image: string;
+                cars: {
+                    car_name: string;
+                    car_image: string;
+                }[];
+                car_class_names: string[];
+                splits_this_week: number;
+            }[];
         }
     }
 }

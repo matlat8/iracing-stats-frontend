@@ -2,22 +2,31 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
+import {  useEffect } from "react";
 import { Tag } from "~/components/Tag";
 import { Card, CardContent } from "~/components/ui/card";
+import { useQueryParam } from "~/src/hooks";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 
 
 export default function ASeriesInfoCard() {
 
     const { seriesId } = useParams<{ seriesId: string }>();
+    const [, setSeasonId] = useQueryParam<string>("seasonId", "");
 
     const { data } = useQuery({
         queryKey: ['series/{seriesId}', seriesId],
         queryFn: () => iRacingStatAPI.fetch(`/series/${seriesId}` as "/series/{seriesId}")
-                                    .then(response => response.success && response)
+                                    .then(response => response.success && response),
     })
 
     const firstSeason = data && data.seasons.length > 0 && data.seasons.slice(0, 1)[0];
+
+    useEffect(() => {
+        if (firstSeason) {
+            setSeasonId(String(firstSeason.season_id));
+        }
+    }, [firstSeason, setSeasonId]);
 
     const tags = firstSeason && [{
         text: 'Multi-Class',
