@@ -10,6 +10,7 @@ import { TooltipContent, TooltipTrigger, Tooltip } from "~/components/ui/tooltip
 import { timeToRaceFormat } from "~/src/time"
 import LoadingTableRow from "~/components/LoadingTableRow"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
+import Image from "next/image"
 
 export default function SessionResults({ sessionId }: { sessionId: number }) {
     const { data, isFetching, isError } = useQuery({
@@ -144,7 +145,16 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
                                             </Link>
                                         </TableCell>
                                         <TableCell>{result.car_class_short_name}</TableCell>
-                                        <TableCell>{result.car_name}</TableCell>
+                                        <TableCell>
+                                            <Tooltip>
+                                                <TooltipTrigger asChild>
+                                                    <Image src={result.small_car_image} alt={result.car_name} width={128} height={128} className="h-12 w-20 rounded-full object-cover"/>
+                                                </TooltipTrigger>
+                                                <TooltipContent>
+                                                    {result.car_name}
+                                                </TooltipContent>
+                                            </Tooltip>
+                                        </TableCell>
                                         <TableCell>{result.incidents}</TableCell>
                                         <TableCell>{timeToRaceFormat(result.interval)}</TableCell>
                                         <TableCell>{timeToRaceFormat(result.class_interval)}</TableCell>

@@ -207,6 +207,8 @@ declare namespace iRacingStatAPI {
                 cust_id: number;
                 display_name: string;
                 car_name: string;
+                large_car_image: string;
+                small_car_image: string;
                 car_class_short_name: string;
                 starting_position: number;
                 starting_position_in_class: number;

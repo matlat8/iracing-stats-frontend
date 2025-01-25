@@ -149,7 +149,7 @@ export default function LapTimeCard() {
                     </ChartContainer>
                 )}
             </CardContent>
-            <CardFooter>
+            <CardFooter className="pt-4">
                 <Tooltip tooltip='Coming soon' className="ml-auto">
                     <Button className="hover:bg-red-700 dark:hover:bg-red-500 ml-auto">Detailed Breakdown</Button>
                 </Tooltip>
