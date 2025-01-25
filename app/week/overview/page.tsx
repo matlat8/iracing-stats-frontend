@@ -1,6 +1,7 @@
 
 import LapTimeCard from "./(section)/LapTimeCard";
 import { Metadata } from "next";
+import WeekOverviewInfo from "./(section)/WeekOverviewInfo";
 
 export const metadata: Metadata = {
     title: 'Week Overview',
@@ -11,7 +12,11 @@ export const metadata: Metadata = {
 export default function WeekOverview() {
     return (
         <div className="max-w-7xl mx-auto flex flex-col justify-center items-center px-2">
-            <LapTimeCard />
+            <div className="grid grid-cols-2 gap-4">
+                <WeekOverviewInfo />
+                <LapTimeCard />
+
+            </div>
         </div>
     )
 }

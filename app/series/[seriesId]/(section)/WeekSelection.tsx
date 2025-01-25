@@ -29,7 +29,7 @@ export default function WeekSelection() {
                     <CardContent className="p-0">
                         <div className="grid grid-cols-[auto_1fr_1fr_auto] w-full">
                             <div className="flex items-center justify-center pl-8">
-                                <Link href={`/week/overview?seasonId=${seasonId}&?weekNum=${week.race_week_num}`}>
+                                <Link href={`/week/overview?seasonId=${seasonId}&weekNum=${week.race_week_num}`}>
                                     <Button>
                                         View
                                     </Button>

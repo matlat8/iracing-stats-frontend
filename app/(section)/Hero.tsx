@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { FaDiscord } from "react-icons/fa";
+import { Button } from "~/components/ui/button";
 
 
 export default function HomeHero() {
@@ -10,6 +13,11 @@ export default function HomeHero() {
             <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
               Comprehensive analytics and insights for iRacing. Track statistics, analyze performance, and explore racing data.
             </p>
+            <Link href="https://discord.gg/wCa3E8jAaw" target="new">
+              <Button>
+                <FaDiscord /> Discord
+              </Button>
+            </Link>
           </div>
         </section>
     )

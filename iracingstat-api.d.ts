@@ -349,6 +349,19 @@ declare namespace iRacingStatAPI {
                 splits_this_week: number;
             }[];
         },
+        "/seasons/{seasonId}": {
+            data: {
+                series_id: number;
+                series_name: string;
+                series_short_name: string;
+                season_id: number;
+                season_year: number;
+                season_quarter: number;
+                license_category: string;
+                min_start: string;
+                max_end: string;
+            }
+        },
         "/seasons/{seasonId}/weeks/{weekNum}/avg_irating_laptime": {
             chart: {
                 irating_group: number;
