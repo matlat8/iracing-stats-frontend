@@ -1,4 +1,11 @@
+
 import LapTimeCard from "./(section)/LapTimeCard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'Week Overview',
+    description: 'View the averages of the best lap times and average lap times by iRating group.',
+  };
 
 
 export default function WeekOverview() {

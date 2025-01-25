@@ -47,14 +47,13 @@ export default function LapTimeCard() {
                     View the averages of the best lap times and average lap times by iRating group. 
                 </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-0">
                 {data && data.success && (
                     <ChartContainer config={chartConfig}>
                         <ComposedChart
                             accessibilityLayer
                             data={data.chart}
                             margin={{
-                                left: 12,
                                 right: 12,
                             }} >
                                 <CartesianGrid vertical={false} />
