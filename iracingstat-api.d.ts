@@ -346,6 +346,14 @@ declare namespace iRacingStatAPI {
                 car_class_names: string[];
                 splits_this_week: number;
             }[];
+        },
+        "/seasons/{seasonId}/weeks/{weekNum}/avg_irating_laptime": {
+            chart: {
+                irating_group: number;
+                avg_best_lap_time: number;
+                avg_avg_lap_time: number;
+                participants: number;
+            }[];
         }
     }
 }
