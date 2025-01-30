@@ -14,9 +14,8 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 
 export default function WeekKPIS() {
-    const [weekNum, setWeekNum] = useQueryParam<number>("weekNum", 0);
+    const [weekNum, ] = useQueryParam<number>("weekNum", 0);
     const [seasonId, ] = useQueryParam<string>("seasonId", "");
-    const [seriesId, ] = useQueryParam<string>("seriesId", "");
 
     const { data, isFetching } = useQuery({
         queryKey: ['seasons/{seasonId}/weeks/{weekNum}', seasonId, weekNum],
