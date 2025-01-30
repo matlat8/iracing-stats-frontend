@@ -44,7 +44,7 @@ export default function WeekOverviewInfo() {
             )}
             {data && (
             <CardContent className="pt-8 flex flex-col justify-center items-center">
-                    <h2 className="text-2xl">{data.series_name}</h2>
+                    <h2 className="text-2xl font-extrabold">{data.series_name}</h2>
                     <h2 className="text-3xl font-extralight">{data.season_year} S{data.season_quarter}</h2>
                     <h1 className="text-3xl font-extralight pt-4">Week {weekNum + 1}</h1>
                     <p className="pt-8">
