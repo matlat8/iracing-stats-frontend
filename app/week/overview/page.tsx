@@ -2,6 +2,7 @@
 import LapTimeCard from "./(section)/LapTimeCard";
 import { Metadata } from "next";
 import WeekOverviewInfo from "./(section)/WeekOverviewInfo";
+import WeekKPIS from "./(section)/WeekKPIs";
 
 export const metadata: Metadata = {
     title: 'Week Overview',
@@ -15,8 +16,8 @@ export default function WeekOverview() {
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 <WeekOverviewInfo />
                 <LapTimeCard />
-
             </div>
+            <WeekKPIS />
         </div>
     )
 }

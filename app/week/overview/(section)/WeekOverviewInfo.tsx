@@ -10,6 +10,7 @@ import { useQueryParam } from "~/src/hooks";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 import { Skeleton } from '~/components/ui/skeleton';
 import ImageCircle from '~/components/ImageCircle';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 
 export default function WeekOverviewInfo() {
@@ -23,8 +24,10 @@ export default function WeekOverviewInfo() {
                         .then(response => response.success && response.data),
     })
 
+    const [ animate ] = useAutoAnimate()
+
     return (
-        <Card className="h-full flex flex-col">
+        <Card className="h-full flex flex-col" ref={ animate }>
             {isFetching && (
                 <CardContent className='pt-8 flex flex-col justify-center items-center gap-2'>
                     <Skeleton className="w-full h-8 shimmer" />
@@ -47,6 +50,7 @@ export default function WeekOverviewInfo() {
                     <p className="pt-8">
                     {format(new Date(data.min_start), 'MMMM d, yyyy')} - {format(new Date(data.max_end), 'MMMM d, yyyy')}
                     </p>
+                    <p>{data.track_name} {data.config_name}</p>
                     <ImageCircle images={data.cars.map((car) => ({ url: car.image, title: car.name }))} />
 
             </CardContent>
