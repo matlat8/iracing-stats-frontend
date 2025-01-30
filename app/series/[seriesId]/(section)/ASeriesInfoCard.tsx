@@ -44,8 +44,8 @@ export default function ASeriesInfoCard() {
                 
                 {data && data.seasons.length > 0 && data.seasons.slice(0, 1).map((season) => (
                     <div key={season.season_id}>
-                        <h1 className="text-2xl">{season.season_name}</h1>
-                        <div className="flex gap-2">
+                        <h1 className="text-2xl font-extrabold bg-gradient-to-r from-red-400 via-red-700 to-indigo-400 inline-block text-transparent bg-clip-text pt-4">{season.season_name}</h1>
+                        <div className="flex gap-2 py-4">
                             {tags && tags.map((tag) => (
                                 tag.visibility && (
                                     <Tag key={tag.text} text={tag.text} className={tag.color} />
