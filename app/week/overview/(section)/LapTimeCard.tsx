@@ -5,6 +5,7 @@ import { Tooltip } from "~/components/Tooltip";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "~/components/ui/chart";
+import { Skeleton } from "~/components/ui/skeleton";
 import { useQueryParam } from "~/src/hooks";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 import { formatDuration } from "~/src/time";
@@ -31,7 +32,7 @@ export default function LapTimeCard() {
     const [seasonId, ] = useQueryParam<string>("seasonId", "");
     const [weekNum, ] = useQueryParam<number>("weekNum", 0);
 
-    const { data } = useQuery({
+    const { data, isFetching } = useQuery({
         queryKey: ['seasons/{seasonId}/weeks/{weekNum}/avg_irating_laptime', seasonId, weekNum],
         queryFn: () => iRacingStatAPI.fetch(`/seasons/${seasonId}/weeks/${weekNum}/avg_irating_laptime` as "/seasons/{seasonId}/weeks/{weekNum}/avg_irating_laptime")
                                     .then(response => response.success && response),
@@ -47,9 +48,12 @@ export default function LapTimeCard() {
                     View the averages of the best lap times and average lap times by iRating group. 
                 </CardDescription>
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-0 h-96">
+                {isFetching && (
+                    <Skeleton className="w-full h-96" />
+                )}
                 {data && data.success && (
-                    <ChartContainer config={chartConfig}>
+                    <ChartContainer config={chartConfig} className="h-96 w-full">
                         <ComposedChart
                             accessibilityLayer
                             data={data.chart}

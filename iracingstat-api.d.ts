@@ -362,6 +362,31 @@ declare namespace iRacingStatAPI {
                 max_end: string;
             }
         },
+        "/seasons/{seasonId}/weeks/{weekNum}": {
+            data: {
+                series_id: number;
+                series_name: string;
+                series_short_name: string;
+                season_id: number;
+                season_year: number;
+                season_quarter: number;
+                race_week_num: number;
+                track_name: string;
+                config_name: string;
+                cars: {
+                    name: string;
+                    image: string;
+                }[];
+                track_image: string;
+                license_category: string;
+                min_start: string;
+                max_end: string;
+                avg_incidents: number;
+                unique_drivers: number;
+                total_splits: number;
+                total_laps_completed: number;
+            }
+        },
         "/seasons/{seasonId}/weeks/{weekNum}/avg_irating_laptime": {
             chart: {
                 irating_group: number;

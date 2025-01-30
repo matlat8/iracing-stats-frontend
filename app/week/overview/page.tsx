@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function WeekOverview() {
     return (
         <div className="max-w-7xl mx-auto flex flex-col justify-center items-center px-2">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 <WeekOverviewInfo />
                 <LapTimeCard />
 
