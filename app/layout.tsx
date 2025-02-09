@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { TooltipProvider } from "~/components/ui/tooltip";
 import { Suspense } from "react";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from "next/script";
 
 const montserrat = Montserrat({ subsets: ['latin']})
  
@@ -16,6 +17,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <QueryProvider>
       <Analytics />
       <html lang="en" suppressHydrationWarning>
+        <Script async defer
+          src={process.env.NEXT_PUBLIC_UMAMI_SRC}
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+          />
         <body>
 
         <ThemeProvider attribute="class" disableTransitionOnChange>
