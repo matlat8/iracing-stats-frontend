@@ -46,7 +46,7 @@ export default function WeekOverviewInfo() {
             <CardContent className="pt-8 flex flex-col justify-center items-center">
                     <h2 className="text-2xl font-extrabold">{data.series_name}</h2>
                     <h2 className="text-3xl font-extralight">{data.season_year} S{data.season_quarter}</h2>
-                    <h1 className="text-3xl font-extralight pt-4">Week {weekNum + 1}</h1>
+                    <h1 className="text-3xl font-semibold pt-4">Week {weekNum + 1}</h1>
                     <p className="pt-8">
                     {format(new Date(data.min_start), 'MMMM d, yyyy')} - {format(new Date(data.max_end), 'MMMM d, yyyy')}
                     </p>

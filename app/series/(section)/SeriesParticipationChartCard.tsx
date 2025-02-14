@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
 import { Card, CardContent } from "~/components/ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "~/components/ui/chart";
+import { useQueryParam } from "~/src/hooks";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 
 
@@ -18,20 +19,25 @@ const chartConfig = {
 export default function SeriesParticiationChartCard() {
     const router = useRouter();
 
+
     const { data } = useQuery({
         queryKey: ['series/this_week'],
         queryFn: () => iRacingStatAPI.fetch('/series/this_week')
                     .then(response => response.success && response.data)
     })
+    const [selectedCategories, ] = useQueryParam('categories', '')
+    const selectedCategoriesList = selectedCategories ? selectedCategories.split(',') : [];
+
+    const filteredData = data && (selectedCategoriesList.length === 0 ? data : data.filter(series => selectedCategoriesList.includes(series.license_category)));
 
     return (
         <Card className="w-full">
             <CardContent>
-                {data && (
+                {filteredData && (
                 <ChartContainer config={chartConfig} className="h-96 w-full">
                     <BarChart
                         accessibilityLayer
-                        data={data.slice(0, 10)}
+                        data={filteredData.slice(0, 10)}
                         margin={{
                             top: 20
                         }}>
