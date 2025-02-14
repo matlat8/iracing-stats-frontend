@@ -11,6 +11,7 @@ import { timeToRaceFormat } from "~/src/time"
 import LoadingTableRow from "~/components/LoadingTableRow"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 import Image from "next/image"
+import DriverRow from "~/components/DriverRow"
 
 export default function SessionResults({ sessionId }: { sessionId: number }) {
     const { data, isFetching, isError } = useQuery({
@@ -141,7 +142,11 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
                                         </TableCell>
                                         <TableCell>
                                             <Link href={`/drivers/${result.cust_id}/career`}>
-                                                <p className="hover:underline">{result.display_name}</p>
+                                                <DriverRow custId={result.cust_id} 
+                                                            name={result.display_name} 
+                                                            club={ result.club_name }
+                                                            countryCode={ result.country_code }
+                                                            countryImage={ result.country_image_url} />
                                             </Link>
                                         </TableCell>
                                         <TableCell>{result.car_class_short_name}</TableCell>

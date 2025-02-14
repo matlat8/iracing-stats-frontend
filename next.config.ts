@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       'static-cdn.jtvnw.net',
-      'images-static.iracing.com'
+      'images-static.iracing.com',
+      'f005.backblazeb2.com'
     ]
   },
 };

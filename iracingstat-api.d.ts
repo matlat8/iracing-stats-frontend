@@ -206,6 +206,9 @@ declare namespace iRacingStatAPI {
             data: {
                 cust_id: number;
                 display_name: string;
+                country_code: string;
+                club_name: string;
+                country_image_url: string;
                 car_name: string;
                 large_car_image: string;
                 small_car_image: string;
@@ -214,6 +217,10 @@ declare namespace iRacingStatAPI {
                 starting_position_in_class: number;
                 finish_position: number;
                 finish_position_in_class: number;
+                pos_change: number;
+                pos_in_class_change: number;
+                abs_pos_change: number;
+                abs_pos_in_class_change: number;
                 incidents: number;
                 interval: number;
                 class_interval: number;
