@@ -116,6 +116,27 @@ declare namespace iRacingStatAPI {
                 }
             },
         },
+        "/drivers/{custId}/positions": {
+            data: {
+                all_categories: {
+                    cust_id: number;
+                    start_day: string;
+                    avg_finish_position: number;
+                    avg_starting_position: number;
+                    rolling_avg_finish_position: number;
+                    rolling_avg_starting_position: number;
+                }[];
+                categories: {
+                    cust_id: number;
+                    start_day: string;
+                    license_category: string;
+                    avg_finish_position: number;
+                    avg_starting_position: number;
+                    rolling_avg_finish_position: number;
+                    rolling_avg_starting_position: number;
+                }[];
+            }
+        },
         "/drivers/{custId}/events": {
             data: {
                 cust_id: number;
