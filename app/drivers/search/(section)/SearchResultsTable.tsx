@@ -7,7 +7,7 @@ import { Spinner } from "~/components/Spinner";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "~/components/ui/table";
 import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 
 export default function SearchResultsTable() {
@@ -35,7 +35,7 @@ export default function SearchResultsTable() {
     }
 
     return (
-        <Card className="h-[32rem] overflow-y-clip hover:overflow-y-auto" ref={ animate }>
+        <Card className="h-[32rem] flex flex-col" ref={ animate }>
             <CardHeader>
                 <CardTitle>
                     <div className="flex gap-4 items-center">
@@ -54,18 +54,13 @@ export default function SearchResultsTable() {
                     
                 </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-grow overflow-y-auto relative">
                     {isFetching && (
                                 <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-10">
                                     <Spinner className="w-16 h-16" />
                                 </div>
                     )}
                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-[300px] border-gray-200"></TableHead>
-                        </TableRow>
-                    </TableHeader>
                     <TableBody ref={ animate }>
 
                         {tableData.map((driver, index) => (
