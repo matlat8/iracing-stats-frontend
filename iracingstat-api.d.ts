@@ -27,6 +27,7 @@ declare namespace iRacingStatAPI {
                 display_name: string;
                 club_name: string;
                 country_code: string;
+                country_image_url: string;
             }[];
         },
         "/drivers/top/wins": {

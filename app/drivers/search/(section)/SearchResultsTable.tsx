@@ -1,8 +1,8 @@
 'use client';
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import DriverRow from "~/components/DriverRow";
 import { Spinner } from "~/components/Spinner";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
@@ -55,23 +55,29 @@ export default function SearchResultsTable() {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-[300px] border-gray-200">Driver</TableHead>
-                            <TableHead className="w-[150px]">Location</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody ref={ animate }>
-                        {isFetching && (
+                    {isFetching && (
                                 <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-10">
                                     <Spinner className="w-16 h-16" />
                                 </div>
-                            )}
+                    )}
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-[300px] border-gray-200"></TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody ref={ animate }>
+
                         {tableData.map((driver, index) => (
                             <TableRow key={index}>
-                                <Link href={`/drivers/${driver.cust_id}/career`}><TableCell className="border-r w-[300px]">{driver.display_name}</TableCell></Link>
-                                <TableCell>{driver.club_name} {driver.country_code}</TableCell>
+                                <TableCell>
+                                    <DriverRow 
+                                        custId={ driver.cust_id }
+                                        name={ driver.display_name }
+                                        club={ driver.club_name }
+                                        countryCode={ driver.country_code }
+                                        countryImage={ driver.country_image_url } />
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
