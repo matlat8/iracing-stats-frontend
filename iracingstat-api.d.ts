@@ -135,6 +135,12 @@ declare namespace iRacingStatAPI {
                     rolling_avg_finish_position: number;
                     rolling_avg_starting_position: number;
                 }[];
+                rollup: {
+                    license_category?: string;
+                    total_events: number;
+                    qualifying_avg_finish_pos: number;
+                    race_avg_finish_pos: number;
+                }[];
             }
         },
         "/drivers/{custId}/events": {

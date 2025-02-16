@@ -20,6 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Script async defer
           src={process.env.NEXT_PUBLIC_UMAMI_SRC}
           data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+          data-domains="iracingstats.com"
           />
         <body>
 

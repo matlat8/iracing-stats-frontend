@@ -12,7 +12,7 @@ import { iRacingStatAPI } from "~/src/iRacingStatAPI";
 const chartConfig = {
     avg_finish_position: {
         label: "Finish Position",
-        color: "hsl(var(--chart-1))"
+        color: "hsl(var(--chart-4))"
     },
     avg_starting_position: {
         label: "Start Position",
@@ -32,7 +32,7 @@ export default function LicenseAvgPositionChart({ custId }: { custId: number }) 
     const [selectedTab, setSelectedTab] = useState(0);
 
     const { data, isFetching } = useQuery({
-        queryKey: ['/drivers/{custId}/positions', custId, selectedTab],
+        queryKey: ['/drivers/{custId}/positions', custId],
         queryFn: () => iRacingStatAPI.fetch(`/drivers/${custId}/positions` as '/drivers/{custId}/positions')
                     .then(response => response.success && response)
     })
@@ -49,10 +49,10 @@ export default function LicenseAvgPositionChart({ custId }: { custId: number }) 
             <CardHeader className="flex w-full">
                 <div className="flex-grow">
                     <CardTitle>
-                        Position by Something
+                        Average Finishing Position (by) License
                     </CardTitle>
                     <CardDescription>
-                    Daily average finish positions. and a 7-day rolling average (line) for each license category. Pick a license to see your performance trend over time.
+                    Daily average finish positions (scatter) correlated with a 7-day rolling average (line). Pick a license to see performance trend over time.
                     </CardDescription>
                 </div>
                 <div className="flex-shrink">
@@ -101,15 +101,19 @@ export default function LicenseAvgPositionChart({ custId }: { custId: number }) 
                                 <Line
                                     type={'monotone'}
                                     dataKey={'rolling_avg_starting_position'}
+                                    stroke="hsl(var(--muted-foreground))"
+                                    strokeDasharray={'3 3'}
+                                    dot={false}
                                     />
                                 <Line
                                     type={"monotone"}
                                     dataKey={'rolling_avg_finish_position'}
+                                    dot={false}
                                     />
 
                                 <Scatter
                                     dataKey={'avg_finish_position'}
-                                    fill="hsl(var(--chart-2))"
+                                    fill="var(--primary)"
                                     />
                                 <ChartLegend 
                                     content={<ChartLegendContent />}/>

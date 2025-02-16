@@ -18,7 +18,7 @@ const chartConfig = {
     },
     rolling_avg_finish_position: {
         label: "Avg. Finish Position",
-        color: "hsl(var(--chart-2))"
+        color: "hsl(var(--chart-4))"
     },
     rolling_avg_start_position: {
         label: "Avg. Start Position",
@@ -31,7 +31,7 @@ export default function AvgPositionScatter() {
     const { custId } = useParams<{ custId: string }>();
 
     const { data, isFetching } = useQuery({
-        queryKey: ['/drivers/{custId}/positions', 1],
+        queryKey: ['/drivers/{custId}/positions', custId],
         queryFn: () => iRacingStatAPI.fetch(`/drivers/${custId}/positions` as '/drivers/{custId}/positions')
                     .then(response => response.success && response)
     })
@@ -69,7 +69,7 @@ export default function AvgPositionScatter() {
                                 <YAxis
                                     dataKey='avg_finish_position'
                                     tickCount={5}
-                                    domain={['auto', 'auto']}
+                                    domain={[0, 'auto']}
                                     allowDataOverflow={true}/>
                                 <ChartTooltip
                                     cursor={false}
@@ -81,7 +81,7 @@ export default function AvgPositionScatter() {
                                     />
                                 <Scatter
                                     dataKey={"avg_finish_position"}
-                                    fill={"hsl(var(--chart-2))"}
+                                    fill={"var(--primary)"}
                                     />
 
                             </ComposedChart>
