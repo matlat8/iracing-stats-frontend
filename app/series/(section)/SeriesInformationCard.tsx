@@ -16,7 +16,6 @@ export default function SeriesInformationCard() {
 
     const handleCategoryChange = (category: string | string[]) => {
         setSelectedCategories(category.toString())
-        console.log(category)
     }
 
     const uniqueCategories = data && data.map(series => series.license_category).filter((value, index, self) => self.indexOf(value) === index)

@@ -42,7 +42,6 @@ export default function LicenseAvgPositionChart({ custId }: { custId: number }) 
                                                         .sort((a, b) => a.localeCompare(b));
 
     const selectedTabString = uniqueLicenses && uniqueLicenses[selectedTab];
-    console.log(selectedTabString)
 
     return (
         <Card>

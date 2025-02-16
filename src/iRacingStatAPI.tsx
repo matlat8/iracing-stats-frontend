@@ -3,7 +3,6 @@
 export class iRacingStatAPI {
 
 	public static URL(path: string): string {
-        console.log('Environment:', process.env.NEXT_PUBLIC_NODE_ENV);
 		//if (path.startsWith("http")) return path;
         if (process.env.NEXT_PUBLIC_NODE_ENV === "development") return `http://localhost:8000${ path }`;
         if (process.env.NEXT_PUBLIC_NODE_ENV === "test") return `https://beta.api.iracingstat.com${ path }`;
