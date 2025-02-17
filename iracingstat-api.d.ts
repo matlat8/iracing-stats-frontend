@@ -193,6 +193,13 @@ declare namespace iRacingStatAPI {
                 ir_change: number;
                 cpi_change: number;
             }[];
+        },
+        "/drivers/link/{requestId}": {
+            request_id: string;
+            discord_uid: string;
+            discord_name?: string;
+            discord_avatar?: string;
+            ir_cust_id?: number;
         }
     }
 

@@ -142,7 +142,7 @@ export default function SessionResults({ sessionId }: { sessionId: number }) {
                                         </TableCell>
                                         <TableCell>
                                             <Link href={`/drivers/${result.cust_id}/career`}>
-                                                <DriverRow custId={result.cust_id} 
+                                                <DriverRow
                                                             name={result.display_name} 
                                                             club={ result.club_name }
                                                             countryCode={ result.country_code }

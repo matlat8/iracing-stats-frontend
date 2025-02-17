@@ -1,6 +1,7 @@
 'use client';
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import DriverRow from "~/components/DriverRow";
 import { Spinner } from "~/components/Spinner";
@@ -66,12 +67,13 @@ export default function SearchResultsTable() {
                         {tableData.map((driver, index) => (
                             <TableRow key={index}>
                                 <TableCell>
-                                    <DriverRow 
-                                        custId={ driver.cust_id }
-                                        name={ driver.display_name }
-                                        club={ driver.club_name }
-                                        countryCode={ driver.country_code }
-                                        countryImage={ driver.country_image_url } />
+                                    <Link href={`/drivers/${driver.cust_id}/career`}>
+                                        <DriverRow 
+                                            name={ driver.display_name }
+                                            club={ driver.club_name }
+                                            countryCode={ driver.country_code }
+                                            countryImage={ driver.country_image_url } />
+                                    </Link>
                                 </TableCell>
                             </TableRow>
                         ))}
