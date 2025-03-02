@@ -185,6 +185,12 @@ declare namespace iRacingStatAPI {
                 sportscar_ir: number;
                 formulacar_ir: number;
             }[];
+            current: {
+                license_category: string;
+                newi_rating: number;
+                max_starttime: string;
+                seconds_since_last_race: number;
+            }[];
         },
         "/drivers/{custId}/tracks": {
             data: {

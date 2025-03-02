@@ -2,7 +2,6 @@
 
 import { useParams } from 'next/navigation';
 import OverallStats from './(section)/OverallStats';
-import IRatingChart from './(section)/iRatingChart';
 import RecentEvents from './(section)/RecentEvents';
 import Achievements from './(section)/Achievements';
 import StatsOvertimePivot from '../reports/performance/(section)/StatsOvertimePivot';
@@ -10,6 +9,7 @@ import TopTrack from './(section)/TopTrack';
 import AvgPositionScatter from './(section)/AvgPositionScatter';
 import LicenseAvgPositionChart from './(section)/LicenseAvgPositionChart';
 import PositionTable from './(section)/PositionTable';
+import CurrentiRating from './(section)/CurrentiRating';
 
 
 
@@ -19,12 +19,11 @@ export default function CareerPage() {
 
     // <ReportsCard custId={ Number(custId) }/>
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 flex flex-col gap-4">
             <div className="grid gap-6 lg:grid-cols-2">
-                <div className='flex flex-col gap-4'>
-                    <OverallStats cust_id={ Number(custId) }/>
-                </div>
-                <IRatingChart custId={ Number(custId) }/>
+                <OverallStats cust_id={ Number(custId) }/>
+                <CurrentiRating custId={ Number(custId) }/>
+
             </div>
             <div className="mt-6">
                 <RecentEvents custId={ Number(custId) }/>
