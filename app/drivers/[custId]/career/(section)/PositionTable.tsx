@@ -55,7 +55,7 @@ export default function PositionTable() {
                                         { season.total_events }
                                     </TableCell>
                                     <TableCell className="text-end">
-                                        { season.race_avg_finish_pos.toFixed(2) }
+                                        { season.race_avg_finish_pos?.toFixed(2) }
                                     </TableCell>
                                     <TableCell className="text-end">
                                         <NegPosNumber number={ Number((season.race_avg_finish_pos - season.qualifying_avg_finish_pos).toFixed(2)) } />
